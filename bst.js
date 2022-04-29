@@ -57,22 +57,31 @@ function deleteAndReturnRoot(root, key) {
 		// Point: Get the Inorder Successor's Key and Replace It with the deleting Node's Key
 		root.key = minValue(root.right);
 
-		// Point: Finally Delete the Inorder Successor Node
+		// Point: Finally Delete the Inorder Successor Node by Passing the Temp Root and the Root Key. But this will Not Delete the OG Root Key Because the Temp Root is sent as the Root to be deleted.
 		root.right = deleteAndReturnRoot(root.right, root.key);
-		console.log(root);
 	}
 
 	return root;
 }
 
-// Key: Get Minimum Value from Right Subtree
 function minValue(root) {
+	// Key: Get Minimum Value from Right Subtree
 	let min = root.key;
 	while (root.left !== null) {
 		min = root.left.key;
-		root = root.left; // Warning: Updating Root
+		root = root.left; // Warning: Updating Temporary Root Not the OG Root
 	}
 	return min;
+}
+
+function SearchKey(root, key) {
+	if (root === null) return console.log("Not Found!");
+
+	if (root.key === key) return console.log("Found");
+
+	if (key < root.key) root.left = SearchKey(root.left, key);
+
+	if (key > root.key) root.right = SearchKey(root.right, key);
 }
 
 // Key: Create/Insert/Update BST
@@ -82,11 +91,13 @@ insertKey(250);
 insertKey(20);
 insertKey(90);
 insertKey(290);
+insertKey(350);
+insertKey(150);
 insertKey(2000);
 console.log(root);
 
 // Key: Delete BST
-deleteKey(100);
+// deleteKey(100);
 // deleteKey(2000);
 
 // Key: Traverse BST
@@ -94,4 +105,4 @@ deleteKey(100);
 // traverseDsc(root);
 
 // Key: Search BST
-// Search(250);
+SearchKey(root, 295);
