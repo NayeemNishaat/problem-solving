@@ -54,11 +54,12 @@ function deleteAndReturnRoot(root, key) {
 		else if (root.right === null) return root.left;
 
 		//  Part: Node has Two Children
-		// Point: Get the Inorder Successor
+		// Point: Get the Inorder Successor's Key and Replace It with the deleting Node's Key
 		root.key = minValue(root.right);
 
-		// Point: Delete the inorder successor
+		// Point: Finally Delete the Inorder Successor Node
 		root.right = deleteAndReturnRoot(root.right, root.key);
+		console.log(root);
 	}
 
 	return root;
@@ -69,7 +70,7 @@ function minValue(root) {
 	let min = root.key;
 	while (root.left !== null) {
 		min = root.left.key;
-		root = root.left;
+		root = root.left; // Warning: Updating Root
 	}
 	return min;
 }
@@ -85,9 +86,12 @@ insertKey(2000);
 console.log(root);
 
 // Key: Delete BST
-deleteKey(20);
+deleteKey(100);
 // deleteKey(2000);
 
 // Key: Traverse BST
-traverseAsc(root);
-traverseDsc(root);
+// traverseAsc(root);
+// traverseDsc(root);
+
+// Key: Search BST
+// Search(250);
