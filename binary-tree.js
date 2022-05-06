@@ -39,8 +39,8 @@ function deleteKey(root, key) {
 
 	if (root.key === key) {
 		if (root.left === null) {
-			root.key = root.right;
-			root.right = deleteKey(root.left, root.key);
+			root.key = root.right; // Remark: Replacing root.key with root.right
+			root.right = deleteKey(root.left, root.key); // Remark: After replacing now deleting root.right by assigning root.left because it's null!
 			return root;
 		}
 		if (root.right === null) {
@@ -51,11 +51,12 @@ function deleteKey(root, key) {
 
 		root.key = leftMost(root.left);
 
-		root.left = deleteKey(root.left, root.key);
+		root.left = deleteKey(root.left, root.key); // Warning: Deleting root.left by assigning null
 	}
 
-	root.left = deleteKey(root.left, key);
-	root.right = deleteKey(root.right, key);
+	// Important: Basically Traversing and Updating
+	root.left = deleteKey(root.left, key); // Note: Traversing and Updating Left
+	root.right = deleteKey(root.right, key); // Note: Traversing and Updating Right
 
 	return root;
 }
@@ -70,9 +71,9 @@ function leftMost(root) {
 // Chapter: Inserting/Creating Binary Tree
 const root = new Node(12);
 root.left = new Node(8);
-root.right = new Node(80);
-root.left.left = new Node(45);
-root.left.right = new Node(455);
+// root.right = new Node(80);
+// root.left.left = new Node(45);
+// root.left.right = new Node(455);
 // console.log(root);
 
 // Chapter: Traversing Binary Tree
@@ -83,5 +84,5 @@ root.left.right = new Node(455);
 // searchKey(root, 80);
 
 // Chapter: Delete Binary Tree
-deleteKey(root, 8);
+deleteKey(root, 12);
 console.log(root);
