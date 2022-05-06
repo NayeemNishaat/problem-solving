@@ -30,6 +30,35 @@ function searchKey(root, key) {
 	}
 }
 
+// function deleteKey(root, key) {
+// 	root = deleteKeyAndReturnRoot(root, key);
+// }
+
+function deleteKey(root, key) {
+	if (root === null) return root;
+
+	if (root.key === key) {
+		if (root.left === null) return root.right;
+		if (root.right === null) return root.left;
+
+		root.key = leftMost(root.left);
+
+		root.left = deleteKey(root.left, root.key);
+	}
+
+	root.left = deleteKey(root.left, key);
+	root.right = deleteKey(root.right, key);
+
+	return root;
+}
+
+function leftMost(root) {
+	while (root.left) {
+		root = root.left;
+	}
+	return root.key;
+}
+
 // Chapter: Inserting/Creating Binary Tree
 const root = new Node(12);
 root.left = new Node(8);
@@ -43,4 +72,8 @@ root.left.right = new Node(455);
 // traverseRL(root);
 
 // Chapter: Serching Binary Tree
-searchKey(root, 80);
+// searchKey(root, 80);
+
+// Chapter: Delete Binary Tree
+// deleteKey(root, 12);
+console.log(root);

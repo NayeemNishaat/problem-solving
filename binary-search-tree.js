@@ -46,7 +46,7 @@ function deleteAndReturnRoot(root, key) {
 
 	// Point: If Not Empty Find the Node to be Deleted
 	if (key < root.key) root.left = deleteAndReturnRoot(root.left, key);
-	else if (key > root.key) root.right = deleteAndReturnRoot(root.left, key);
+	else if (key > root.key) root.right = deleteAndReturnRoot(root.right, key);
 	// Point: The Deletable Node is found
 	else {
 		// Part: Node has Only One Child or No Child
@@ -94,15 +94,15 @@ insertKey(290);
 insertKey(350);
 insertKey(150);
 insertKey(2000);
-console.log(root);
 
 // Key: Delete BST
-// deleteKey(100);
+deleteKey(100);
 // deleteKey(2000);
+console.log(root);
 
 // Key: Traverse BST
 // traverseAsc(root);
 // traverseDsc(root);
 
 // Key: Search BST
-SearchKey(root, 295);
+// SearchKey(root, 295);
