@@ -22,7 +22,15 @@ function traverseRL(root) {
 	}
 }
 
-// Chapter: Creating Binary Tree
+function searchKey(root, key) {
+	if (root !== null) {
+		searchKey(root.left, key);
+		searchKey(root.right, key);
+		if (root.key === key) return console.log("Found!", key);
+	}
+}
+
+// Chapter: Inserting/Creating Binary Tree
 const root = new Node(12);
 root.left = new Node(8);
 root.right = new Node(80);
@@ -31,5 +39,8 @@ root.left.right = new Node(455);
 // console.log(root);
 
 // Chapter: Traversing Binary Tree
-traverseLR(root);
-traverseRL(root);
+// traverseLR(root);
+// traverseRL(root);
+
+// Chapter: Serching Binary Tree
+searchKey(root, 80);
