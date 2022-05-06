@@ -38,8 +38,16 @@ function deleteKey(root, key) {
 	if (root === null) return root;
 
 	if (root.key === key) {
-		if (root.left === null) return root.right;
-		if (root.right === null) return root.left;
+		if (root.left === null) {
+			root.key = root.right;
+			root.right = deleteKey(root.left, root.key);
+			return root;
+		}
+		if (root.right === null) {
+			root.key = root.left;
+			root.left = deleteKey(root.right, root.key);
+			return root;
+		}
 
 		root.key = leftMost(root.left);
 
@@ -75,5 +83,5 @@ root.left.right = new Node(455);
 // searchKey(root, 80);
 
 // Chapter: Delete Binary Tree
-// deleteKey(root, 12);
+deleteKey(root, 8);
 console.log(root);
