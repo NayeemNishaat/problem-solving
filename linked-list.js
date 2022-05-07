@@ -53,22 +53,25 @@ function searchLL(root, value) {
 	}
 }
 
-function deleteLL(root, value) {
-	if (root !== null) {
-		// Part: If value is the first element
-		if (root.value === value) {
-			root = root.next;
-			// console.log(root);
-			return root;
-		}
+function deleteLL(value) {
+	function deleteLLFactory(root, value) {
+		if (root !== null) {
+			// Part: If value is the first element
+			if (root.value === value) {
+				root = root.next;
+				// console.log(root);
+				return root;
+			}
 
-		// Part: If value is the last element
-		if (root.next === null) {
-			return null;
+			// Part: If value is the last element
+			if (root.next === null) {
+				return null;
+			}
+			root.next = deleteLLFactory(root.next, value);
 		}
-		root.next = deleteLL(root.next, value);
+		return root;
 	}
-	return root;
+	root = deleteLLFactory(root, value);
 }
 
 // Chapter: Insert/Create
@@ -88,5 +91,5 @@ createLL(40);
 // searchLL(root, 30);
 
 // Chapter: Delete
-deleteLL(root, 10);
+deleteLL(10);
 console.log(root);
