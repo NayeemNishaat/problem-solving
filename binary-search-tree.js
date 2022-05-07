@@ -84,7 +84,7 @@ function SearchKey(root, key) {
 	if (key > root.key) root.right = SearchKey(root.right, key);
 }
 
-// Key: Create/Insert/Update BST
+// Key: Create/Insert BST
 insertKey(100);
 insertKey(50);
 insertKey(250);
