@@ -55,20 +55,21 @@ function searchLL(root, value) {
 
 function deleteLL(value) {
 	function deleteLLFactory(root, value) {
-		if (root !== null) {
-			// Part: If value is the first element
-			if (root.value === value) {
-				root = root.next;
-				// console.log(root);
-				return root;
-			}
+		if (root === null) return root;
 
-			// Part: If value is the last element
-			if (root.next === null) {
-				return null;
-			}
-			root.next = deleteLLFactory(root.next, value);
+		// Part: If value is the first/middle element
+		if (root.value === value) {
+			root = root.next;
+			return root;
 		}
+
+		// Part: If value is the last element
+		if (root.next === null) {
+			return null;
+		}
+
+		root.next = deleteLLFactory(root.next, value);
+
 		return root;
 	}
 	root = deleteLLFactory(root, value);
@@ -91,5 +92,5 @@ createLL(40);
 // searchLL(root, 30);
 
 // Chapter: Delete
-deleteLL(10);
+deleteLL(40);
 console.log(root);
