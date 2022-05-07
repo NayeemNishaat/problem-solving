@@ -44,13 +44,12 @@ function traverseLLAsc(root) {
 }
 
 function searchLL(root, value) {
-	if (root !== null) {
-		if (root.value === value) {
-			console.log("Found", value);
-		}
-
-		searchLL(root.next, value);
+	if (root === null) return;
+	if (root.value === value) {
+		console.log("Found", value);
 	}
+
+	searchLL(root.next, value);
 }
 
 function deleteLL(value) {
@@ -75,12 +74,25 @@ function deleteLL(value) {
 	root = deleteLLFactory(root, value);
 }
 
+function updateLL(currentValue, updatedValue) {
+	function searchLL(root, value) {
+		if (root === null) return;
+
+		if (root.value === value) {
+			root.value = updatedValue;
+		}
+
+		searchLL(root.next, value);
+	}
+	searchLL(root, currentValue);
+}
+
 // Chapter: Insert/Create
 createLL(10);
 createLL(20);
 createLL(30);
 createLL(40);
-// createLL(50);
+createLL(50);
 // console.log(root);
 
 // Chapter: Traverse
@@ -92,5 +104,10 @@ createLL(40);
 // searchLL(root, 30);
 
 // Chapter: Delete
-deleteLL(40);
+// deleteLL(30);
+// console.log(root);
+
+// Chapter: Update
+updateLL(10, 100);
+// updateLL(20, 100);
 console.log(root);
