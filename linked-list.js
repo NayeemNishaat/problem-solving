@@ -17,23 +17,30 @@ function createLL(value) {
 	root = createLLFactory(root, value);
 }
 
-function traverseLLAsc() {
-	while (root !== null) {
-		console.log(root.value);
-		root = root.next;
-	}
-}
+// Warning: Easy But Not Recommended
+// function traverseLLAsc() {
+// 	while (root !== null) {
+// 		console.log(root.value);
+// 		root = root.next;
+// 	}
+// }
 
 function traverseLLDsc() {
 	function traverseLLDscFactory(root) {
 		if (root !== null) {
-			return console.log(root.value);
+			traverseLLDscFactory(root.next);
+			console.log(root.value);
 		}
-		root = traverseLLDsc(root);
-		return root;
 	}
 
-	root = traverseLLDscFactory(root);
+	traverseLLDscFactory(root);
+}
+
+function traverseLLAsc(root) {
+	if (root !== null) {
+		console.log(root.value);
+		traverseLLAsc(root.next);
+	}
 }
 
 // Chapter: Insert/Create LL
@@ -44,5 +51,7 @@ createLL(40);
 createLL(50);
 // console.log(root);
 
+// Chapter: Traversing
 // traverseLLAsc();
 traverseLLDsc();
+traverseLLAsc(root);
