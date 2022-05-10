@@ -1,4 +1,4 @@
-import { createLL, searchLL } from "./index";
+import { createLL, searchLL } from "../index";
 
 let root;
 

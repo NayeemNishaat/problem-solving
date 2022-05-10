@@ -6,7 +6,7 @@ class Node {
 	}
 }
 
-function traverseLR(root) {
+export function traverseLR(root) {
 	if (root !== null) {
 		traverseLR(root.left);
 		console.log("LR", root.key);
@@ -14,7 +14,7 @@ function traverseLR(root) {
 	}
 }
 
-function traverseRL(root) {
+export function traverseRL(root) {
 	if (root !== null) {
 		traverseRL(root.right);
 		console.log("RL", root.key);
@@ -22,7 +22,7 @@ function traverseRL(root) {
 	}
 }
 
-function searchKey(root, key) {
+export function searchKey(root, key) {
 	if (root !== null) {
 		searchKey(root.left, key);
 		searchKey(root.right, key);
@@ -34,7 +34,7 @@ function searchKey(root, key) {
 // 	root = deleteKeyAndReturnRoot(root, key);
 // }
 
-function deleteKey(root, key) {
+export function deleteKey(root, key) {
 	if (root === null) return root;
 
 	if (root.key === key) {
@@ -61,7 +61,7 @@ function deleteKey(root, key) {
 	return root;
 }
 
-function leftMost(root) {
+export function leftMost(root) {
 	while (root.left) {
 		root = root.left;
 	}
