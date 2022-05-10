@@ -46,7 +46,7 @@ export function traverseLLAsc(root) {
 export function searchLL(root, value) {
 	if (root === null) return;
 	if (root.value === value) {
-		console.log("Found", value);
+		// console.log("Found", value);
 		return `Found ${value}`;
 	}
 
@@ -111,4 +111,4 @@ createLL(50);
 // Chapter: Update
 // updateLL(10, 100);
 // updateLL(20, 100);
-console.log(root);
+// console.log(root);

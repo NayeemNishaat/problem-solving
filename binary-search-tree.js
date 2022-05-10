@@ -7,11 +7,11 @@ class Node {
 
 let root = null;
 
-function insertKey(key) {
+export function insertKey(key) {
 	root = insertAndReturnRoot(root, key);
 }
 
-function insertAndReturnRoot(root, key) {
+export function insertAndReturnRoot(root, key) {
 	if (root === null) root = new Node(key);
 
 	if (key < root.key) root.left = insertAndReturnRoot(root.left, key);
@@ -21,14 +21,14 @@ function insertAndReturnRoot(root, key) {
 	return root;
 }
 
-function traverseAsc(root) {
+export function traverseAsc(root) {
 	if (root !== null) {
 		traverseAsc(root.left);
 		console.log("Asc", root.key);
 		traverseAsc(root.right);
 	}
 }
-function traverseDsc(root) {
+export function traverseDsc(root) {
 	if (root !== null) {
 		traverseDsc(root.right);
 		console.log("Dsc", root.key);
@@ -36,11 +36,11 @@ function traverseDsc(root) {
 	}
 }
 
-function deleteKey(key) {
+export function deleteKey(key) {
 	root = deleteAndReturnRoot(root, key);
 }
 
-function deleteAndReturnRoot(root, key) {
+export function deleteAndReturnRoot(root, key) {
 	// Point: If Empty Tree
 	if (root === null) return root;
 
@@ -64,7 +64,7 @@ function deleteAndReturnRoot(root, key) {
 	return root;
 }
 
-function minValue(root) {
+export function minValue(root) {
 	// Key: Get Minimum Value from Right Subtree
 	let min = root.key;
 	while (root.left !== null) {
@@ -74,7 +74,7 @@ function minValue(root) {
 	return min;
 }
 
-function SearchKey(root, key) {
+export function SearchKey(root, key) {
 	if (root === null) return console.log("Not Found!");
 
 	if (root.key === key) return console.log("Found");
@@ -98,7 +98,7 @@ insertKey(2000);
 // Key: Delete BST
 deleteKey(100);
 // deleteKey(2000);
-console.log(root);
+// console.log(root);
 
 // Key: Traverse BST
 // traverseAsc(root);

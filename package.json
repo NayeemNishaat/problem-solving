@@ -8,11 +8,6 @@
 		"test": "NODE_OPTIONS=--experimental-vm-modules jest --watch",
 		"dev": "nodemon linked-list.js"
 	},
-	"jest": {
-		"testMatch": [
-			"tests/**.test.js"
-		]
-	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/NayeemNishaat/dsa.git"

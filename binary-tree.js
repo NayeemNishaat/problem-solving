@@ -85,4 +85,4 @@ root.left = new Node(8);
 
 // Chapter: Delete Binary Tree
 deleteKey(root, 12);
-console.log(root);
+// console.log(root);
