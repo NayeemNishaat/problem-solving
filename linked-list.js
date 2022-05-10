@@ -7,14 +7,14 @@ class Node {
 
 let root = null;
 
-function createLL(value) {
+export function createLL(value) {
 	function createLLFactory(root, value) {
 		if (root === null) return (root = new Node(value));
 		root.next = createLLFactory(root.next, value);
 		return root;
 	}
 
-	root = createLLFactory(root, value);
+	return (root = createLLFactory(root, value));
 }
 
 // Warning: Easy But Not Recommended
@@ -25,7 +25,7 @@ function createLL(value) {
 // 	}
 // }
 
-function traverseLLDsc() {
+export function traverseLLDsc() {
 	function traverseLLDscFactory(root) {
 		if (root !== null) {
 			traverseLLDscFactory(root.next);
@@ -36,23 +36,24 @@ function traverseLLDsc() {
 	traverseLLDscFactory(root);
 }
 
-function traverseLLAsc(root) {
+export function traverseLLAsc(root) {
 	if (root !== null) {
 		console.log(root.value);
 		traverseLLAsc(root.next);
 	}
 }
 
-function searchLL(root, value) {
+export function searchLL(root, value) {
 	if (root === null) return;
 	if (root.value === value) {
 		console.log("Found", value);
+		return `Found ${value}`;
 	}
 
-	searchLL(root.next, value);
+	return searchLL(root.next, value);
 }
 
-function deleteLL(value) {
+export function deleteLL(value) {
 	function deleteLLFactory(root, value) {
 		if (root === null) return root;
 
@@ -74,7 +75,7 @@ function deleteLL(value) {
 	root = deleteLLFactory(root, value);
 }
 
-function updateLL(currentValue, updatedValue) {
+export function updateLL(currentValue, updatedValue) {
 	function searchLL(root, value) {
 		if (root === null) return;
 
@@ -108,6 +109,6 @@ createLL(50);
 // console.log(root);
 
 // Chapter: Update
-updateLL(10, 100);
+// updateLL(10, 100);
 // updateLL(20, 100);
 console.log(root);
