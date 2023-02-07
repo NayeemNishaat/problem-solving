@@ -1,2 +1,0 @@
-# problem-solving
-TypeScript implementation
