@@ -1,0 +1,26 @@
+{
+  "name": "esnext-template",
+  "version": "1.0.0",
+  "description": "A template for using ESNEXT features with typescript.",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon -x NODE_ENV=development node --no-warnings --experimental-specifier-resolution=node --loader ts-node/esm src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "devDependencies": {
+    "@types/node": "13.9.0",
+    "ts-node": "^10.9.1",
+    "typescript": "3.8.3"
+  },
+  "keywords": [
+    "NodeJs",
+    "TypeScript",
+    "TSNode"
+  ],
+  "author": "Nayeem",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
