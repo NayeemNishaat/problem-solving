@@ -22,11 +22,9 @@ function letterCombinations(digits: string): string[] {
     const arr2 = Array.from(num2);
 
     const newArr = [];
-    for (let i = 0; i < arr1.length; i++) {
-      for (let j = 0; j < arr2.length; j++) {
-        newArr.push(arr1[i] + arr2[j]);
-      }
-    }
+    for (let i = 0; i < arr1.length; i++)
+      for (let j = 0; j < arr2.length; j++) newArr.push(arr1[i] + arr2[j]);
+
     return newArr.concat(recursive(newArr, dict[+digitsArr.pop()]));
   }
   return recursive(dict[+digitsArr.pop()], dict[+digitsArr.pop()]).filter(
@@ -40,37 +38,28 @@ console.log(res);
 console.timeEnd("combinationSum");
 
 /* function letterCombinations(digits: string): string[] {
-  if (!digits) {
-      return [];
-  }
+  if (!digits) return [];
 
   const dict: { [key: string]: string[] } = {
-      '1': null,
-      '2': ['a', 'b', 'c'],
-      '3': ['d', 'e', 'f'],
-      '4': ['g', 'h', 'i'],
-      '5': ['j', 'k', 'l'],
-      '6': ['m', 'n', 'o'],
-      '7': ['p', 'q', 'r', 's'],
-      '8': ['t', 'u', 'v'],
-      '9': ['w', 'x', 'y', 'z']
+    "1": null,
+    "2": ["a", "b", "c"],
+    "3": ["d", "e", "f"],
+    "4": ["g", "h", "i"],
+    "5": ["j", "k", "l"],
+    "6": ["m", "n", "o"],
+    "7": ["p", "q", "r", "s"],
+    "8": ["t", "u", "v"],
+    "9": ["w", "x", "y", "z"]
   };
 
-  let res: string[] = [''];
-
+  let res: string[] = [""];
   for (const c of digits) {
-      const list = dict[c];
-      if (!list) {
-          continue;
-      }
-      const temp: string[] = [];
-      for (const l of list) {
-          for (const str of res) {
-              temp.push(str + l);
-          }
-      }
-      res = temp;
-  }
+    const list = dict[c];
+    if (!list) continue;
 
+    const temp: string[] = [];
+    for (const l of list) for (const str of res) temp.push(str + l);
+    res = temp;
+  }
   return res;
 } */
