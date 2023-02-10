@@ -9,7 +9,7 @@ const dict = {
   9: "wxyz"
 };
 
-function letterCombinations(digits: string): string[] {
+export function letterCombinations(digits: string): string[] {
   if (digits === "") return [];
   const digitsArr = digits.split("").reverse();
   const digitsLength = digitsArr.length;
