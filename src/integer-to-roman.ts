@@ -61,4 +61,4 @@ export function intToRoman(num: number): string {
   return result;
 }
 
-console.log(intToRoman(6943397));
+console.log(intToRoman(3397));
