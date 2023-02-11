@@ -13,7 +13,6 @@ const dict = {
   900: "CM",
   1000: "M"
 };
-let res = "";
 
 function findAddends(range: number[], num: number) {
   const addends = new Map();
@@ -28,40 +27,37 @@ function findAddends(range: number[], num: number) {
       subtrahand,
       addends.get(subtrahand) ? addends.get(subtrahand) + 1 : 1
     );
-
     num -= subtrahand;
   }
 
-  let current = "";
-  addends.forEach((val, key) => {
-    current += "".padEnd(val, dict[key]);
-  });
-  res = current + res;
+  let currentResult = "";
+  addends.forEach(
+    (val: number, key: number) => (currentResult += "".padEnd(val, dict[key]))
+  );
+  return currentResult;
 }
 
 function findRange(num: number, i: number) {
   const range: number[] = [];
-  for (const key in dict) {
-    if (num >= +key && i <= +key) {
-      range.push(+key);
-    }
-  }
-  findAddends(range, num);
+  for (const key in dict) if (num >= +key && i <= +key) range.push(+key);
+  return findAddends(range, num);
 }
 
 export function intToRoman(num: number): string {
   let i = 1;
+  let result = "";
+
   while (num) {
     const mod = num % 10;
     const current = mod * i;
 
-    if (!dict[current]) findRange(current, i);
+    if (!dict[current]) result = findRange(current, i) + result;
+    else result = dict[current] + result;
 
     num = Math.trunc(num / 10);
     i *= 10;
   }
-  return "";
+  return result;
 }
 
 console.log(intToRoman(378));
-console.log(res);
