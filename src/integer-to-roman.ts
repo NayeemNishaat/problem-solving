@@ -40,6 +40,7 @@ function findAddends(range: number[], num: number) {
 function findRange(num: number, i: number) {
   const range: number[] = [];
   for (const key in dict) if (num >= +key && i <= +key) range.push(+key);
+  if (i > 1000) range.push(1000);
   return findAddends(range, num);
 }
 
@@ -60,4 +61,4 @@ export function intToRoman(num: number): string {
   return result;
 }
 
-console.log(intToRoman(378));
+console.log(intToRoman(6943397));
