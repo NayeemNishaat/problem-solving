@@ -19,35 +19,32 @@ const dict = {
   1000: "M"
 };
 
-function findConsist(num, i) {
+function findAddends(arr) {
+  console.log(arr);
+}
+
+function findRange(num, i) {
   const temp = [];
   for (const key in dict) {
     if (num >= key && i <= key) {
-      temp.push(key);
+      temp.push(+key);
     }
   }
+  findAddends(temp);
 }
 
 export function intToRoman(num: number): string {
-  // console.log(1994 / 10);
-  // console.log(Math.trunc(199.4));
-  // console.log(1994 % 10);
   let i = 1;
   while (num) {
     const mod = num % 10;
-
     const current = mod * i;
-    // console.log(dict[current]);
 
-    if (!dict[current]) {
-      console.log(current, i);
-      findConsist(current, i);
-    }
+    if (!dict[current]) findRange(current, i);
 
     num = Math.trunc(num / 10);
     i *= 10;
   }
   return "";
 }
-// MCMXCIV
+
 console.log(intToRoman(378)); // CCCLXXVIII
