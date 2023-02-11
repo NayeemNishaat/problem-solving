@@ -19,18 +19,18 @@ const dict = {
   1000: "M"
 };
 
-function findAddends(arr) {
+function findAddends(arr: number[]) {
   console.log(arr);
 }
 
-function findRange(num, i) {
-  const temp = [];
+function findRange(num: number, i: number) {
+  const range: number[] = [];
   for (const key in dict) {
-    if (num >= key && i <= key) {
-      temp.push(+key);
+    if (num >= +key && i <= +key) {
+      range.push(+key);
     }
   }
-  findAddends(temp);
+  findAddends(range);
 }
 
 export function intToRoman(num: number): string {
