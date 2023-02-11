@@ -19,8 +19,20 @@ const dict = {
   1000: "M"
 };
 
-function findAddends(arr: number[]) {
-  console.log(arr);
+function findAddends(range: number[], num: number) {
+  console.log(range, num);
+  const addends = {};
+
+  let subtrahand = range.pop();
+  while (num) {
+    if (num < subtrahand) {
+      subtrahand = range.pop();
+      continue;
+    }
+    addends[subtrahand] = addends[subtrahand] ? addends[subtrahand] + 1 : 1;
+    num -= subtrahand;
+  }
+  console.log(addends);
 }
 
 function findRange(num: number, i: number) {
@@ -30,7 +42,7 @@ function findRange(num: number, i: number) {
       range.push(+key);
     }
   }
-  findAddends(range);
+  findAddends(range, num);
 }
 
 export function intToRoman(num: number): string {
