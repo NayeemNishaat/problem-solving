@@ -62,3 +62,26 @@ export function intToRoman(num: number): string {
 }
 
 console.log(intToRoman(3397));
+
+/* 
+const THOUSANDS = [ 'M', 'MM', 'MMM' ];
+const HUNDREDS = [ 'C', 'CC', 'CCC', 'CD', 'D', 'DC', 'DCC', 'DCCC', 'CM' ];
+const TENS = [ 'X', 'XX', 'XXX', 'XL', 'L', 'LX', 'LXX', 'LXXX', 'XC' ];
+const UNITS = [ 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX' ];
+
+function intToRoman(num: number): string {
+    let roman = '';
+
+    const thousands = (num - num % 1000) / 1000;
+    const hundreds = (num % 1000 - num % 100) / 100;
+    const tens = (num % 100 - num % 10) / 10;
+    const units = num % 10;
+
+    roman += THOUSANDS[ thousands - 1] || '';
+    roman += HUNDREDS[ hundreds - 1] || '';
+    roman += TENS[ tens - 1] || '';
+    roman += UNITS[ units - 1] || '';
+    
+    return roman;
+};
+*/
