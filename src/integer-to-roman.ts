@@ -1,9 +1,4 @@
 const dict = {
-  // 2: "II",
-  // 3: "III",
-  // 6: "VI",
-  // 7: "VII",
-  // 8: "VIII",
   1: "I",
   4: "IV",
   5: "V",
@@ -18,10 +13,10 @@ const dict = {
   900: "CM",
   1000: "M"
 };
+let res = "";
 
 function findAddends(range: number[], num: number) {
-  console.log(range, num);
-  const addends = {};
+  const addends = new Map();
 
   let subtrahand = range.pop();
   while (num) {
@@ -29,10 +24,19 @@ function findAddends(range: number[], num: number) {
       subtrahand = range.pop();
       continue;
     }
-    addends[subtrahand] = addends[subtrahand] ? addends[subtrahand] + 1 : 1;
+    addends.set(
+      subtrahand,
+      addends.get(subtrahand) ? addends.get(subtrahand) + 1 : 1
+    );
+
     num -= subtrahand;
   }
-  console.log(addends);
+
+  let current = "";
+  addends.forEach((val, key) => {
+    current += "".padEnd(val, dict[key]);
+  });
+  res = current + res;
 }
 
 function findRange(num: number, i: number) {
@@ -59,4 +63,5 @@ export function intToRoman(num: number): string {
   return "";
 }
 
-console.log(intToRoman(378)); // CCCLXXVIII
+console.log(intToRoman(378));
+console.log(res);
