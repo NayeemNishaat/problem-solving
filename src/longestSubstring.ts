@@ -1,16 +1,18 @@
 export function lengthOfLongestSubstring(s: string): number {
   let max = 0;
-  let current = 0;
-  const ht = {};
 
   for (let i = 0; i < s.length; i++) {
-    if (!ht[s[i]]) {
-      current++;
-      ht[s[i]] = true;
+    let current = 0;
+    const ht = {};
+
+    for (let j = i; j < s.length; j++) {
+      if (!ht[s[j]]) {
+        current++;
+        ht[s[j]] = true;
+      } else break;
     }
     max = Math.max(current, max);
-    current = 0;
   }
   return max;
 }
-console.log(lengthOfLongestSubstring("abcabcbb"));
+console.log(lengthOfLongestSubstring("pwwkewxyy"));
