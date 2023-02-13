@@ -29,4 +29,4 @@ export function longestPalindrome(s: string): string {
 
   return longest;
 }
-console.log(longestPalindrome("aaaracecccccaraaatattarrattat"));
+console.log(longestPalindrome("aa"));
