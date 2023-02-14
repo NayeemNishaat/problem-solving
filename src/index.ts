@@ -5,4 +5,5 @@ import { lengthOfLongestSubstring } from "./longest-substring";
 import { findMaxConsecutiveOnes } from "./max-consecutive-ones";
 import { longestPalindrome } from "./longest-palindrome";
 import { addBinary } from "./add-binary";
-addBinary;
+import { convert } from "./zigzag-conversion";
+convert;
