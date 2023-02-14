@@ -1,9 +1,6 @@
 export function convert(s: string, numRows: number) {
   if (numRows == 1) return s;
 
-  // let sections = Math.ceil(n / (2 * numRows - 2.0));
-  // let numCols = sections * (numRows - 1);
-
   const matrix = Array.from({ length: numRows }, () => []);
 
   let row = 0,
