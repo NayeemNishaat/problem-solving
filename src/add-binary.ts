@@ -4,22 +4,27 @@
 // }
 
 // Part: Optimized Solution
+// export function addBinary(a: string, b: string): string {
+//   const maxLen = Math.max(a.length, b.length);
+//   const res = [];
+//   let carry = false;
+
+//   for (let i = 0; i < maxLen || carry; i++) {
+//     let currentSum = carry ? 1 : 0;
+//     carry = false;
+
+//     if (a[a.length - i - 1] === "1") currentSum++;
+//     if (b[b.length - i - 1] === "1") currentSum++;
+
+//     if (currentSum > 1) (carry = true), (currentSum -= 2);
+//     res.push(currentSum);
+//   }
+//   return res.reverse().join("");
+// }
+
+// Part: Ideal Solution
 export function addBinary(a: string, b: string): string {
-  const maxLen = Math.max(a.length, b.length);
-  const res = [];
-  let carry = false;
-
-  for (let i = 0; i < maxLen || carry; i++) {
-    let currentSum = carry ? 1 : 0;
-    carry = false;
-
-    if (a[a.length - i - 1] === "1") currentSum++;
-    if (b[b.length - i - 1] === "1") currentSum++;
-
-    if (currentSum > 1) (carry = true), (currentSum -= 2);
-    res.push(currentSum);
-  }
-  return res.reverse().join("");
+  return (BigInt("0b" + a) + BigInt("0b" + b)).toString(2);
 }
 
 console.log(
