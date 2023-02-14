@@ -4,4 +4,5 @@ import { countOdds } from "./count-odds";
 import { lengthOfLongestSubstring } from "./longest-substring";
 import { findMaxConsecutiveOnes } from "./max-consecutive-ones";
 import { longestPalindrome } from "./longest-palindrome";
-longestPalindrome;
+import { addBinary } from "./add-binary";
+addBinary;
