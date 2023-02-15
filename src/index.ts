@@ -7,4 +7,5 @@ import { longestPalindrome } from "./longest-palindrome";
 import { addBinary } from "./add-binary";
 import { convert } from "./zigzag-conversion";
 import { addToArrayForm } from "./add-to-array-form";
-addToArrayForm;
+import { reverse } from "./reverse";
+reverse;
