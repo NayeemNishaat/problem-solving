@@ -6,4 +6,5 @@ import { findMaxConsecutiveOnes } from "./max-consecutive-ones";
 import { longestPalindrome } from "./longest-palindrome";
 import { addBinary } from "./add-binary";
 import { convert } from "./zigzag-conversion";
-convert;
+import { addToArrayForm } from "./add-to-array-form";
+addToArrayForm;
