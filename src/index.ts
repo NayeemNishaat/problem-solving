@@ -8,4 +8,5 @@ import { addBinary } from "./add-binary";
 import { convert } from "./zigzag-conversion";
 import { addToArrayForm } from "./add-to-array-form";
 import { reverse } from "./reverse";
-reverse;
+import { myAtoi } from "./atoi";
+myAtoi;
