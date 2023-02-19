@@ -10,4 +10,5 @@ import { addToArrayForm } from "./add-to-array-form";
 import { reverse } from "./reverse";
 import { myAtoi } from "./atoi";
 import { minMaxDifference } from "./max-difference";
-minMaxDifference;
+import { zigzagLevelOrder } from "./zig-zag-level-order";
+zigzagLevelOrder;
