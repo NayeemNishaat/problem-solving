@@ -11,4 +11,5 @@ import { reverse } from "./reverse";
 import { myAtoi } from "./atoi";
 import { minMaxDifference } from "./max-difference";
 import { zigzagLevelOrder } from "./zig-zag-level-order";
-zigzagLevelOrder;
+import { maxArea } from "./max-area";
+maxArea;
