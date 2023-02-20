@@ -12,4 +12,5 @@ import { myAtoi } from "./atoi";
 import { minMaxDifference } from "./max-difference";
 import { zigzagLevelOrder } from "./zig-zag-level-order";
 import { maxArea } from "./max-area";
-maxArea;
+import { searchInsert } from "./search-insert";
+searchInsert;
