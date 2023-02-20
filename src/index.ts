@@ -13,4 +13,5 @@ import { minMaxDifference } from "./max-difference";
 import { zigzagLevelOrder } from "./zig-zag-level-order";
 import { maxArea } from "./max-area";
 import { searchInsert } from "./search-insert";
-searchInsert;
+import { threeSum } from "./three-sum";
+threeSum;
