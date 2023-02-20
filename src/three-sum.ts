@@ -1,27 +1,50 @@
+function mergeSortedArray(arr1, arr2) {
+  const arr = [];
+  let i = 0,
+    j = 0;
+
+  while (i < arr1.length && j < arr2.length) {
+    if (arr1[i] < arr2[j]) arr.push(arr1[i]), i++;
+    else arr.push(arr2[j]), j++;
+  }
+
+  while (i < arr1.length) arr.push(arr1[i]), i++;
+  while (j < arr2.length) arr.push(arr2[j]), j++;
+
+  return arr;
+}
+
+function mergeSort(arr) {
+  if (arr.length <= 1) return arr;
+  const mid = Math.floor(arr.length / 2);
+  return mergeSortedArray(
+    mergeSort(arr.slice(0, mid)),
+    mergeSort(arr.slice(mid))
+  );
+}
+
 export function threeSum(nums: number[]): number[][] {
-  const sortedNums = nums.sort(function (a, b) {
-    return a - b;
-  });
+  nums = mergeSort(nums);
   const res = [];
 
-  for (let i = 0; i < sortedNums.length; i++) {
+  for (let i = 0; i < nums.length; i++) {
     let left = i + 1,
-      right = sortedNums.length - 1;
+      right = nums.length - 1;
 
-    if (sortedNums[i - 1] === sortedNums[i] && i > 0) continue;
+    if (nums[i - 1] === nums[i] && i > 0) continue;
 
     while (left < right) {
-      if (sortedNums[left] + sortedNums[right] + sortedNums[i] === 0) {
-        res.push([sortedNums[i], sortedNums[left], sortedNums[right]]);
+      const sum = nums[left] + nums[right] + nums[i];
+      if (sum === 0) {
+        res.push([nums[i], nums[left], nums[right]]);
         left++, right--;
 
-        while (sortedNums[left] === sortedNums[left - 1]) left++; // Note: Removing left/right doplicates
-        while (sortedNums[right] === sortedNums[right + 1]) right--;
-      }
-      if (sortedNums[left] + sortedNums[right] + sortedNums[i] < 0) left++;
-      if (sortedNums[left] + sortedNums[right] + sortedNums[i] > 0) right--;
+        while (nums[left] === nums[left - 1]) left++;
+        while (nums[right] === nums[right + 1]) right--;
+      } else if (sum < 0) left++;
+      else right--;
     }
   }
   return res;
 }
-console.log(threeSum([-2, 0, 0, 2, 2]));
+console.log(threeSum([-1, 0, 1, 2, -1, -4]));
