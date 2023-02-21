@@ -14,4 +14,5 @@ import { zigzagLevelOrder } from "./zig-zag-level-order";
 import { maxArea } from "./max-area";
 import { searchInsert } from "./search-insert";
 import { threeSum } from "./three-sum";
-threeSum;
+import { singleNonDuplicate } from "./single-non-dupli";
+singleNonDuplicate;
