@@ -15,4 +15,5 @@ import { maxArea } from "./max-area";
 import { searchInsert } from "./search-insert";
 import { threeSum } from "./three-sum";
 import { singleNonDuplicate } from "./single-non-dupli";
-singleNonDuplicate;
+import { shipWithinDays } from "./ship-within-days";
+shipWithinDays;
