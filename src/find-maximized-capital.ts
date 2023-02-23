@@ -95,10 +95,10 @@ export function findMaximizedCapital(
     projects.push(new Project(capital[i], profits[i]));
 
   projects.sort((a: Project, b: Project) => a.capital - b.capital);
-  let ini = 0;
+  let currentProject = 0;
   for (let i = 0; i < k; i++) {
-    while (projects[ini]?.capital <= w)
-      heap.enqueue("profit", projects[ini++].profit * -1);
+    while (projects[currentProject]?.capital <= w)
+      heap.enqueue("profit", projects[currentProject++].profit * -1);
 
     const priorityNode = heap.dequeue();
     if (!priorityNode) break;
