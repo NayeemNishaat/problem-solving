@@ -16,4 +16,5 @@ import { searchInsert } from "./search-insert";
 import { threeSum } from "./three-sum";
 import { singleNonDuplicate } from "./single-non-dupli";
 import { shipWithinDays } from "./ship-within-days";
-shipWithinDays;
+import { findMaximizedCapital } from "./find-maximized-capital";
+findMaximizedCapital;
