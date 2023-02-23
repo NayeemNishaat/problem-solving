@@ -106,4 +106,4 @@ export function findMaximizedCapital(
   }
   return w;
 }
-console.log(findMaximizedCapital(3, 0, [1, 2, 3], [0, 1, 2]));
+console.log(findMaximizedCapital(3, 0, [1, 5, 3, 1], [0, 1, 2, 2]));
