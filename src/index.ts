@@ -17,4 +17,5 @@ import { threeSum } from "./three-sum";
 import { singleNonDuplicate } from "./single-non-dupli";
 import { shipWithinDays } from "./ship-within-days";
 import { findMaximizedCapital } from "./find-maximized-capital";
-findMaximizedCapital;
+import { minimumDeviation } from "./minimum-deviation";
+minimumDeviation;
