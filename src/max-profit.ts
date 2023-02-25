@@ -1,17 +1,14 @@
 export function maxProfit(prices: number[]): number {
   let left = 0,
     right = 1,
-    maxProfit = 0;
+    maxProfit = 0,
+    currentProfit = 0;
 
   while (right < prices.length) {
-    const currentProfit = prices[right] - prices[left];
+    currentProfit = prices[right] - prices[left];
     maxProfit = Math.max(maxProfit, currentProfit);
 
-    if (maxProfit <= currentProfit) {
-      if (prices[right] < prices[left]) left = right;
-    } else {
-      if (prices[right] < prices[left]) left = right;
-    }
+    if (prices[right] < prices[left]) left = right;
     right++;
   }
 
