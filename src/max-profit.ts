@@ -8,12 +8,11 @@ export function maxProfit(prices: number[]): number {
     maxProfit = Math.max(maxProfit, currentProfit);
 
     if (maxProfit <= currentProfit) {
-      if (prices[right] < prices[left]) (left = right), right++;
-      else right++;
+      if (prices[right] < prices[left]) left = right;
     } else {
-      if (prices[right] < prices[left]) (left = right), right++;
-      else right++;
+      if (prices[right] < prices[left]) left = right;
     }
+    right++;
   }
 
   return maxProfit;
