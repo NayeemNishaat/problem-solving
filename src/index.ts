@@ -18,4 +18,5 @@ import { singleNonDuplicate } from "./single-non-dupli";
 import { shipWithinDays } from "./ship-within-days";
 import { findMaximizedCapital } from "./find-maximized-capital";
 import { minimumDeviation } from "./minimum-deviation";
-minimumDeviation;
+import { maxProfit } from "./max-profit";
+maxProfit;
