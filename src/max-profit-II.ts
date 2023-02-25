@@ -29,4 +29,4 @@ export function maxProfit(prices: number[]): number {
 
   return profit;
 }
-console.log(maxProfit([1, 9, 6, 9, 1, 7, 1, 1, 5, 9, 9, 9]));
+console.log(maxProfit([1, 9, 6, 9, 1, 7, 1, 1, 5, 9, 9, 9, 8, 7, 6]));
