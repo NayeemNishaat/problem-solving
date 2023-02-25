@@ -1,4 +1,4 @@
-export function maxProfit(prices: number[]): number {
+/* export function maxProfit(prices: number[]): number {
   let left = 0,
     right = 1,
     maxProfit = 0,
@@ -20,5 +20,13 @@ export function maxProfit(prices: number[]): number {
   }
 
   return totalProfit;
+} */
+
+export function maxProfit(prices: number[]): number {
+  let profit = 0;
+  for (let i = 1; i < prices.length; i++)
+    if (prices[i - 1] < prices[i]) profit += prices[i] - prices[i - 1];
+
+  return profit;
 }
 console.log(maxProfit([1, 9, 6, 9, 1, 7, 1, 1, 5, 9, 9, 9]));
