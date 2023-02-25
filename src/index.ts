@@ -19,4 +19,5 @@ import { shipWithinDays } from "./ship-within-days";
 import { findMaximizedCapital } from "./find-maximized-capital";
 import { minimumDeviation } from "./minimum-deviation";
 import { maxProfit } from "./max-profit";
-maxProfit;
+import { maxProfit as maxProfitII } from "./max-profit-II";
+maxProfitII;
