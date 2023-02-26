@@ -5,7 +5,7 @@ export function minDistance(word1: string, word2: string): number {
     if (w1 === 0) return w2;
     if (w2 === 0) return w1;
 
-    if (memo[w1][w2] !== undefined) return memo[w1][w2];
+    if (memo[w1][w2]) return memo[w1][w2];
 
     if (word1.charAt(w1 - 1) === word2.charAt(w2 - 1))
       return recursion(word1, word2, w1 - 1, w2 - 1);
