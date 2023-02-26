@@ -24,4 +24,4 @@ export function minDistance(word1: string, word2: string): number {
   );
   return recursion(word1, word2, word1.length, word2.length);
 }
-console.log(minDistance("abc", "ab"));
+console.log(minDistance("dinitrophenylhydrazine", "benzalphenylhydrazone"));
