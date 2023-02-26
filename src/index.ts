@@ -20,4 +20,5 @@ import { findMaximizedCapital } from "./find-maximized-capital";
 import { minimumDeviation } from "./minimum-deviation";
 import { maxProfit } from "./max-profit";
 import { maxProfit as maxProfitII } from "./max-profit-II";
-maxProfitII;
+import { minDistance } from "./min-distance";
+minDistance;
