@@ -7,7 +7,7 @@
     "dev": "nodemon -q -x NODE_ENV=development node --no-warnings --experimental-specifier-resolution=node --loader ts-node/esm src/index.ts",
     "build": "tsc",
     "start": "node dist/index.js",
-    "test": "nodemon -q -x NODE_ENV=development node --no-warnings --experimental-specifier-resolution=node --loader ts-node/esm src/.test.ts"
+    "test": "nodemon -q -x NODE_ENV=development node --no-warnings --experimental-specifier-resolution=node --loader ts-node/esm src/problem.test.ts"
   },
   "devDependencies": {
     "@types/node": "13.9.0",
