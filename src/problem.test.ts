@@ -1,16 +1,11 @@
-function generic(nums1: number[], nums2: number[]) {
-  let res: number[] = [];
-  let ht = {};
-
-  for (let i = 0; i < nums1.length; i++) ht[nums1[i]] = ht[nums1[i]] + 1 || 1;
-
-  for (let i = 0; i < nums2.length; i++) {
-    if (ht[nums2[i]]) {
-      res.push(nums2[i]);
-      ht[nums2[i]]--;
-    }
-  }
-
-  return res;
+function generic(digits: number[]) {
+  return (BigInt(digits.join("")) + 1n)
+    .toString()
+    .split("")
+    .map((el) => +el);
 }
-console.log(generic([4, 55, 5, 5, 5], [2, 4, 6, 8, 5, 2, 0, 5, 5]));
+console.log(
+  generic([
+    6, 1, 4, 5, 3, 9, 0, 1, 9, 5, 1, 8, 6, 7, 0, 5, 5, 4, 3, 9, 9, 9, 9, 9, 9, 9
+  ])
+);
