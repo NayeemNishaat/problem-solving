@@ -1,14 +1,8 @@
 function generic(nums: number[]) {
-  let left = 0,
-    right = 1;
+  let j = 0;
+  for (let i = 0; i < nums.length; i++) nums[i] !== 0 && (nums[j++] = nums[i]);
+  for (j; j < nums.length; j++) nums[j] = 0;
 
-  while (right < nums.length && left < nums.length) {
-    if (nums[right] !== 0 && nums[left] === 0)
-      ([nums[left], nums[right]] = [nums[right], nums[left]]), left++;
-
-    if (nums[left] !== 0) left++;
-    right++;
-  }
   return nums;
 }
 console.log(
