@@ -1,11 +1,21 @@
-function generic(digits: number[]) {
-  return (BigInt(digits.join("")) + 1n)
-    .toString()
-    .split("")
-    .map((el) => +el);
+function generic(nums: number[]) {
+  let count = 0;
+  nums.forEach((el) => el !== 0 && count++);
+
+  for (let i = 0; i < nums.length; i++) {
+    if (count === i) break;
+
+    if (nums[i] === 0) {
+      nums.splice(i, 1);
+      nums.push(0);
+      i--;
+    }
+  }
+  return nums;
 }
 console.log(
   generic([
-    6, 1, 4, 5, 3, 9, 0, 1, 9, 5, 1, 8, 6, 7, 0, 5, 5, 4, 3, 9, 9, 9, 9, 9, 9, 9
+    1, 0, 0, 3, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12, 89, 9, 5, 5, 0, 0, 34, 34,
+    99
   ])
 );
