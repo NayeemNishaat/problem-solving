@@ -21,4 +21,5 @@ import { minimumDeviation } from "./minimum-deviation";
 import { maxProfit } from "./max-profit";
 import { maxProfit as maxProfitII } from "./max-profit-II";
 import { minDistance } from "./min-distance";
-minDistance;
+import { sortArray } from "./sort-array";
+sortArray;
