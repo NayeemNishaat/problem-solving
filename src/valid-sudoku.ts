@@ -1,4 +1,4 @@
-function generic(board: string[][]): boolean {
+export function validSudoku(board: string[][]): boolean {
   const totalCells = board.length ** 2;
 
   const rows = new Map<number, Set<number>>();
@@ -29,7 +29,7 @@ function generic(board: string[][]): boolean {
   return true;
 }
 console.log(
-  generic([
+  validSudoku([
     ["5", "3", ".", ".", "7", ".", ".", ".", "."],
     ["6", ".", ".", "1", "9", "5", ".", ".", "."],
     [".", "9", "8", ".", ".", ".", ".", "6", "."],
