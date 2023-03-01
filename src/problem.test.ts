@@ -1,14 +1,21 @@
 function generic(nums: number[]) {
-  let j = 0;
-  for (let i = 0; i < nums.length; i++) nums[i] !== 0 && (nums[j++] = nums[i]);
-  for (j; j < nums.length; j++) nums[j] = 0;
+  function merge(arr1: number[], arr2: number[]) {
+    const arr = [];
+    let i = 0,
+      j = 0;
 
-  return nums;
+    while (i < arr1.length && j < arr2.length) {
+      if (arr1[i] < arr2[j]) arr.push(arr1[i]), i++;
+      else arr.push(arr2[j]), j++;
+    }
+    while (i < arr1.length) arr.push(arr1[i]), i++;
+    while (j < arr2.length) arr.push(arr2[j]), j++;
+
+    return arr;
+  }
+
+  if (nums.length <= 1) return nums;
+  const mid = Math.floor(nums.length / 2);
+  return merge(generic(nums.slice(0, mid)), generic(nums.slice(mid)));
 }
-console.log(
-  generic([
-    1, 0, 0, 3, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12, 89, 9, 5, 5, 0, 0, 34, 34,
-    99
-  ])
-);
-// [1, 0, 0, 3, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12, 89, 9, 5, 5, 0, 0, 34, 34, 99 ]
+console.log(generic([5, 2, 3, 1]));
