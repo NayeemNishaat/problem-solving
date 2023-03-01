@@ -1,21 +1,10 @@
-function generic(nums: number[]) {
-  function merge(arr1: number[], arr2: number[]) {
-    const arr = [];
-    let i = 0,
-      j = 0;
+function generic(nums: number[], target: number) {
+  const map = new Map();
 
-    while (i < arr1.length && j < arr2.length) {
-      if (arr1[i] < arr2[j]) arr.push(arr1[i]), i++;
-      else arr.push(arr2[j]), j++;
-    }
-    while (i < arr1.length) arr.push(arr1[i]), i++;
-    while (j < arr2.length) arr.push(arr2[j]), j++;
-
-    return arr;
+  for (let i = 0; i < nums.length; i++) {
+    const comp = target - nums[i];
+    if (map.has(comp)) return [map.get(comp), i];
+    map.set(nums[i], i);
   }
-
-  if (nums.length <= 1) return nums;
-  const mid = Math.floor(nums.length / 2);
-  return merge(generic(nums.slice(0, mid)), generic(nums.slice(mid)));
 }
-console.log(generic([5, 2, 3, 1]));
+console.log(generic([2, 7, 11, 15], 13));
