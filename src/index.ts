@@ -23,4 +23,5 @@ import { maxProfit as maxProfitII } from "./max-profit-II";
 import { minDistance } from "./min-distance";
 import { sortArray } from "./sort-array";
 import { validSudoku } from "./valid-sudoku";
-validSudoku;
+import { rotate } from "./rotate-image";
+rotate;
