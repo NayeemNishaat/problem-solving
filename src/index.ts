@@ -24,4 +24,5 @@ import { minDistance } from "./min-distance";
 import { sortArray } from "./sort-array";
 import { validSudoku } from "./valid-sudoku";
 import { rotate } from "./rotate-image";
-rotate;
+import { reverseString } from "./reverse-string";
+reverseString;
