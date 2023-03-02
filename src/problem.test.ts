@@ -1,11 +1,7 @@
-function generic(x: number): number {
-  const xStr = x.toString();
-  let reversed = 0;
-  if (xStr[0] === "-") reversed = -[...xStr.slice(1)].reverse().join("");
-  else reversed = +[...xStr].reverse().join("");
-
-  if (reversed > 2 ** 31 - 1) return 0;
-  if (reversed < -(2 ** 31)) return 0;
-  return reversed;
+function generic(s: string): any {
+  for (let i = 0; i < s.length; i++) {
+    if (s.indexOf(s[i]) === s.lastIndexOf(s[i])) return i;
+  }
+  return -1;
 }
-console.log(generic(56786));
+console.log(generic("leetcode"));
