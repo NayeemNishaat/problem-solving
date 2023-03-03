@@ -1,18 +1,11 @@
-function generic(s: string): any {
-  const map = new Map<string, number[]>();
-
-  for (let i = 0; i < s.length; i++) {
-    const curr = s[i];
-
-    if (map.has(curr)) map.set(curr, [1 + map.get(curr)[0], i]);
-    else map.set(curr, [1, i]);
+function generic(haystack: string, needle: string): any {
+  let j = 0,
+    k = 0;
+  for (let i = 0; i < haystack.length; ) {
+    if (haystack[k] === needle[j]) j++, k++;
+    else (j = 0), (k = ++i);
+    if (j === needle.length) return i;
   }
-
-  const min = Math.min(
-    ...[...map.values()].filter((el) => el[0] === 1).map((el) => el[1])
-  );
-
-  if (min === Infinity) return -1;
-  else return min;
+  return -1;
 }
-console.log(generic("aacbb"));
+console.log(generic("oraorangeorangy", "oran"));
