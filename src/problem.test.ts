@@ -1,11 +1,13 @@
-function generic(s: string, t: string): any {
-  if (s.length !== t.length) return false;
+function generic(s: string): any {
+  s = s.replace(/[^a-zA-Z0-9]/g, "").toLowerCase();
 
-  const map = new Map();
-  for (const val of s) map.set(val, (map.get(val) || 0) + 1);
-  for (const val of t)
-    if (map.get(val) > 0) map.set(val, map.get(val) - 1);
-    else return false;
+  let left = 0,
+    right = s.length - 1;
+
+  while (left < right) {
+    if (s[left] !== s[right]) return false;
+    left++, right--;
+  }
   return true;
 }
-console.log(generic("aacc", "caac"));
+console.log(generic(" "));
