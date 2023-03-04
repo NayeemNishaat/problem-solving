@@ -1,11 +1,44 @@
-function generic(s: string): any {
-  // s = s.replace(/[^a-zA-Z0-9]/g, "").toLowerCase();
-  // console.log(s.match(/^[-+]?\d+/));
+function generic(num: number): any {
+  const numStr = num.toString();
+  const len = ~~numStr.length / 2;
 
-  const int = Number.parseInt(s);
+  const permutations = (array) => {
+    // Sort the input
+    array.sort();
+    // Add a copy and initialize our list of permutations
+    let perms = [array.slice()];
 
-  if (int > 2147483647) return 2147483647;
-  else if (int < -2147483648) return -2147483648;
-  return Number.isNaN(int) ? 0 : int;
+    while (array) {
+      let [i, j, k] = Array(3).fill(array.length - 1);
+
+      // Find the first non-increasing element
+      while (i > 0 && array[i - 1] >= array[i]) i--;
+      // If we don't find one, we're done!
+      if (i <= 0) break;
+
+      // Find first element larger
+      while (array[j] <= array[i - 1]) j--;
+
+      // Swap them
+      [array[i - 1], array[j]] = [array[j], array[i - 1]];
+
+      // Reverse the suffix
+      while (i < k) {
+        [array[i], array[k]] = [array[k], array[i]];
+        i++;
+        k--;
+      }
+      // Add a copy of the current state of the array to the list of permutations
+      perms.push(array.slice());
+    }
+    return perms;
+  };
+  const perm = permutations([...numStr]);
+
+  return perm
+    .map((d) => {
+      return +d.slice(0, len).join("") + +d.slice(len).join("");
+    })
+    .sort((a, b) => a - b)[0];
 }
-console.log(generic("  g  -987u"));
+console.log(generic(678));
