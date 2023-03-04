@@ -1,13 +1,11 @@
 function generic(s: string): any {
-  s = s.replace(/[^a-zA-Z0-9]/g, "").toLowerCase();
+  // s = s.replace(/[^a-zA-Z0-9]/g, "").toLowerCase();
+  // console.log(s.match(/^[-+]?\d+/));
 
-  let left = 0,
-    right = s.length - 1;
+  const int = Number.parseInt(s);
 
-  while (left < right) {
-    if (s[left] !== s[right]) return false;
-    left++, right--;
-  }
-  return true;
+  if (int > 2147483647) return 2147483647;
+  else if (int < -2147483648) return -2147483648;
+  return Number.isNaN(int) ? 0 : int;
 }
-console.log(generic(" "));
+console.log(generic("  g  -987u"));
