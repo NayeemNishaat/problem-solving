@@ -25,4 +25,5 @@ import { sortArray } from "./sort-array";
 import { validSudoku } from "./valid-sudoku";
 import { rotate } from "./rotate-image";
 import { reverseString } from "./reverse-string";
-reverseString;
+import { isPalindrome } from "./is-palindrome";
+isPalindrome;
