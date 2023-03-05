@@ -26,4 +26,5 @@ import { validSudoku } from "./valid-sudoku";
 import { rotate } from "./rotate-image";
 import { reverseString } from "./reverse-string";
 import { isPalindrome } from "./is-palindrome";
-isPalindrome;
+import { permute } from "./permutation";
+permute;
