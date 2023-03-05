@@ -1,8 +1,8 @@
 export function permuteUnique(nums: number[]): number[][] {
-  nums.sort((a, b) => a - b);
   const result: number[][] = [];
+  nums.sort((a, b) => a - b);
 
-  const dfs = (combination: number[], available: number[]): void => {
+  function dfs(combination: number[], available: number[]): void {
     if (available.length === 0) result.push(combination);
 
     for (let i = 0; i < available.length; i++) {
@@ -11,11 +11,11 @@ export function permuteUnique(nums: number[]): number[][] {
       temp.splice(i, 1);
       dfs(
         [...combination, available[i]],
+        // [...available.slice(0, i), ...available.slice(i + 1)],
         temp
-        // [...available.slice(0, i), ...available.slice(i + 1)]
       );
     }
-  };
+  }
   dfs([], nums);
   return result;
 }
