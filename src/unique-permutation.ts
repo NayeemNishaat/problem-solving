@@ -7,10 +7,12 @@ export function permuteUnique(nums: number[]): number[][] {
 
     for (let i = 0; i < available.length; i++) {
       if (available[i] === available[i - 1]) continue;
-
+      const temp = [...available];
+      temp.splice(i, 1);
       dfs(
         [...combination, available[i]],
-        [...available.slice(0, i), ...available.slice(i + 1)]
+        temp
+        // [...available.slice(0, i), ...available.slice(i + 1)]
       );
     }
   };
