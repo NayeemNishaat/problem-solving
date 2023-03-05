@@ -27,4 +27,5 @@ import { rotate } from "./rotate-image";
 import { reverseString } from "./reverse-string";
 import { isPalindrome } from "./is-palindrome";
 import { permute } from "./permutation";
-permute;
+import { permuteUnique } from "./unique-permutation";
+permuteUnique;

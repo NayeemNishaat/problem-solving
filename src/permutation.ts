@@ -12,7 +12,6 @@ export function permute(nums: number[]): number[][] {
     }
   }
   dfs();
-
   return result;
 }
 console.log(permute([1, 1, 2, 2]));
