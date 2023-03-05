@@ -15,4 +15,4 @@ export function permute(nums: number[]): number[][] {
 
   return result;
 }
-console.log(permute([1, 2, 1]));
+console.log(permute([1, 1, 2, 2]));
