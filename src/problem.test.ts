@@ -1,8 +1,11 @@
-function generic(strs: string[]): any {
-  let prefix = strs[0];
-  for (let i = 1; i < strs.length; i++)
-    while (!strs[i].startsWith(prefix)) prefix = prefix.slice(0, -1);
+function generic(arr: number[], k: number): any {
+  const missing: number[] = [];
+  let j = 1;
 
-  return prefix;
+  for (let i = 0; missing.length < k; ) {
+    if (arr[i] !== j) missing.push(j), j++;
+    else i++, j++;
+  }
+  return missing[k - 1];
 }
-console.log(generic(["flower", "flow", "flight"]));
+console.log(generic([2, 3, 4, 7, 11], 5));
