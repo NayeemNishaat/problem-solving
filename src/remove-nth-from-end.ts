@@ -12,13 +12,10 @@ const node = new ListNode(
 );
 
 export function removeNthFromEnd(head, n: number) {
-  let fast = head;
-  let slow = head;
+  let fast = head,
+    slow = head;
 
-  for (let i = 0; i < n; i++) {
-    fast = fast.next;
-  }
-
+  for (let i = 0; i < n; i++) fast = fast.next;
   if (!fast) return head.next;
 
   while (fast.next) {
