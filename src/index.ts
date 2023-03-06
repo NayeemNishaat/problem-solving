@@ -28,4 +28,5 @@ import { reverseString } from "./reverse-string";
 import { isPalindrome } from "./is-palindrome";
 import { permute } from "./permutation";
 import { permuteUnique } from "./unique-permutation";
-permuteUnique;
+import { removeNthFromEnd } from "./remove-nth-from-end";
+removeNthFromEnd;
