@@ -1,11 +1,15 @@
-function generic(arr: number[], k: number): any {
-  const missing: number[] = [];
-  let j = 1;
-
-  for (let i = 0; missing.length < k; ) {
-    if (arr[i] !== j) missing.push(j), j++;
-    else i++, j++;
+class ListNode {
+  val: number;
+  next: ListNode | null;
+  constructor(val?: number, next?: ListNode | null) {
+    this.val = val === undefined ? 0 : val;
+    this.next = next === undefined ? null : next;
   }
-  return missing[k - 1];
 }
-console.log(generic([2, 3, 4, 7, 11], 5));
+
+function deleteNode(node: ListNode | null): void {
+  const nextNode = node.next;
+  node.val = nextNode.val;
+  node.next = nextNode.next;
+  nextNode.next = null;
+}
