@@ -7,18 +7,31 @@ class ListNode {
   }
 }
 
-const head = new ListNode(
-  1,
-  new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5))))
-);
-function reverseList(head: ListNode | null): ListNode | null {
-  let prev = null;
-  while (head) {
-    const temp = head.next;
-    head.next = prev;
-    prev = head;
-    head = temp;
+const head = new ListNode(1, new ListNode(1, new ListNode(2, new ListNode(1))));
+
+function isPalindrome(head: ListNode | null): boolean {
+  let fast = head,
+    slow = head;
+
+  while (fast && fast.next) {
+    fast = fast.next.next;
+    slow = slow.next;
   }
-  return prev;
+
+  let reverse = null;
+  while (slow) {
+    let temp = slow.next;
+    slow.next = reverse;
+    reverse = slow;
+    slow = temp;
+  }
+
+  while (reverse) {
+    if (reverse.val !== head.val) return false;
+    head = head.next;
+    reverse = reverse.next;
+  }
+
+  return true;
 }
-console.log(reverseList(head));
+console.log(isPalindrome(head));
