@@ -6,32 +6,18 @@ class ListNode {
     this.next = next === undefined ? null : next;
   }
 }
-
 const head = new ListNode(1, new ListNode(1, new ListNode(2, new ListNode(1))));
+console.log(head);
 
-function isPalindrome(head: ListNode | null): boolean {
-  let fast = head,
-    slow = head;
+function hasCycle(head: ListNode | null): boolean {
+  let slow = head,
+    fast = head;
 
-  while (fast && fast.next) {
-    fast = fast.next.next;
+  while (fast) {
     slow = slow.next;
+    fast = fast.next?.next;
+    if (slow === fast) return true;
   }
-
-  let reverse = null;
-  while (slow) {
-    let temp = slow.next;
-    slow.next = reverse;
-    reverse = slow;
-    slow = temp;
-  }
-
-  while (reverse) {
-    if (reverse.val !== head.val) return false;
-    head = head.next;
-    reverse = reverse.next;
-  }
-
-  return true;
+  return false;
 }
-console.log(isPalindrome(head));
+console.log(hasCycle(head));
