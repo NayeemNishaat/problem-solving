@@ -18,15 +18,15 @@ const tree = new TreeNode(
 function maxDepth(root: TreeNode | null): number {
   if (!root) return 0;
 
-  let i = 1,
-    max = 1;
+  // let i = 1,
+  //   max = 1;
 
-  function dfs(root: TreeNode) {
-    if (root.left) (max = Math.max(max, ++i)), dfs(root.left);
-    if (root.right) (max = Math.max(max, ++i)), dfs(root.right);
-    i--;
-  }
-  dfs(root);
-  return max;
+  // function dfs(root: TreeNode) {
+  //   if (root.left) (max = Math.max(max, ++i)), dfs(root.left);
+  //   if (root.right) (max = Math.max(max, ++i)), dfs(root.right);
+  //   i--;
+  // }
+  // dfs(root);
+  return 1 + Math.max(maxDepth(root.left), maxDepth(root.right));
 }
 console.log(maxDepth(tree));
