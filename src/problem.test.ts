@@ -22,14 +22,8 @@ function maxDepth(root: TreeNode | null): number {
     max = 1;
 
   function dfs(root: TreeNode) {
-    if (root.left) {
-      max = Math.max(max, ++i);
-      dfs(root.left);
-    }
-    if (root.right) {
-      max = Math.max(max, ++i);
-      dfs(root.right);
-    }
+    if (root.left) (max = Math.max(max, ++i)), dfs(root.left);
+    if (root.right) (max = Math.max(max, ++i)), dfs(root.right);
     i--;
   }
   dfs(root);
