@@ -29,4 +29,4 @@ import { isPalindrome } from "./is-palindrome";
 import { permute } from "./permutation";
 import { permuteUnique } from "./unique-permutation";
 import { removeNthFromEnd } from "./remove-nth-from-end";
-removeNthFromEnd;
+import { maxDepth } from "./max-depth";
