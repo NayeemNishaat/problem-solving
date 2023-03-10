@@ -10,14 +10,22 @@ class TreeNode {
 }
 
 const tree = new TreeNode(
-  3,
-  new TreeNode(9),
-  new TreeNode(20, new TreeNode(15), new TreeNode(7))
+  2,
+  new TreeNode(1),
+  new TreeNode(10, new TreeNode(5), new TreeNode(17))
 );
 
-function maxDepth(root: TreeNode | null): number {
-  if (!root) return 0;
+function isValidBST(root: TreeNode | null): boolean {
+  const res = [];
 
-  return 1 + Math.max(maxDepth(root.left), maxDepth(root.right));
+  function dfs(root: TreeNode) {
+    if (root.left) dfs(root.left);
+    res.push(root.val);
+    if (root.right) dfs(root.right);
+  }
+  dfs(root);
+
+  for (let i = 0; i < res.length; i++) if (res[i] >= res[i + 1]) return false;
+  return true;
 }
-console.log(maxDepth(tree));
+console.log(isValidBST(tree));
