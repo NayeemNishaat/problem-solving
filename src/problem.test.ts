@@ -10,22 +10,24 @@ class TreeNode {
 }
 
 const tree = new TreeNode(
-  2,
-  new TreeNode(1),
-  new TreeNode(10, new TreeNode(5), new TreeNode(17))
+  1,
+  new TreeNode(2, new TreeNode(4), new TreeNode(3)),
+  new TreeNode(2, new TreeNode(4), new TreeNode(3))
 );
 
-function isValidBST(root: TreeNode | null): boolean {
-  const res = [];
+function isSymmetric(root: TreeNode | null): boolean {
+  function dfs(left: TreeNode | null, right: TreeNode | null) {
+    if (
+      (!left && right) ||
+      (left && !right) ||
+      (left && right && left.val !== right.val)
+    )
+      return false;
 
-  function dfs(root: TreeNode) {
-    if (root.left) dfs(root.left);
-    res.push(root.val);
-    if (root.right) dfs(root.right);
+    if (left && right)
+      return dfs(left.left, right.right) && dfs(left.right, right.left);
+    return true;
   }
-  dfs(root);
-
-  for (let i = 0; i < res.length; i++) if (res[i] >= res[i + 1]) return false;
-  return true;
+  return dfs(root.left, root.right);
 }
-console.log(isValidBST(tree));
+console.log(isSymmetric(tree));
