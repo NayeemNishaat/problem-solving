@@ -16,6 +16,7 @@ const tree = new TreeNode(
 );
 
 function levelOrder(root: TreeNode | null): number[][] {
+  if (!root) return [];
   const res = [],
     queue = [root];
 
