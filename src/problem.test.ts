@@ -15,24 +15,7 @@ const tree = new TreeNode(
   new TreeNode(2, new TreeNode(4), new TreeNode(3))
 );
 
-function levelOrder(root: TreeNode | null): number[][] {
-  if (!root) return [];
-  const res = [],
-    queue = [root];
-
-  while (queue.length) {
-    const level = [];
-    const len = queue.length;
-
-    for (let i = 0; i < len; i++) {
-      const current = queue.shift();
-      level.push(current.val);
-      current.left && queue.push(current.left);
-      current.right && queue.push(current.right);
-    }
-    res.push(level);
-  }
-
-  return res;
+function sortedArrayToBST(nums: number[]): TreeNode | null {
+  return;
 }
-console.log(levelOrder(tree));
+console.log(sortedArrayToBST([-10, -3, 0, 5, 9]));
