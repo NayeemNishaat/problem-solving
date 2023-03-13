@@ -30,3 +30,5 @@ import { permute } from "./permutation";
 import { permuteUnique } from "./unique-permutation";
 import { removeNthFromEnd } from "./remove-nth-from-end";
 import { maxDepth } from "./max-depth";
+import { merge } from "./merge-sorted-array";
+merge;
