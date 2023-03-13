@@ -39,6 +39,7 @@ export function merge(nums1: number[], nums2: number[]) {
     k--;
   }
 
+  // Important: Remark: We will always end up either j > 0 or j = 0. If j > 0 then we have to add rest of the nums2 elemeny to nums1. If j = 0 that means we are done although nums1 is not empty because it's already sorted.
   while (j >= 0) {
     nums1[k] = nums2[j];
     j--, k--;
