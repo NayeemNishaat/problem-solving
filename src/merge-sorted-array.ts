@@ -28,7 +28,7 @@ export function merge(nums1: number[], nums2: number[]) {
   let i = nums1.length - 1,
     j = nums2.length - 1,
     k = nums1.length + nums2.length - 1;
-  while (i >= 0 && j >= 0) {
+  while (j >= 0 && i >= 0) {
     if (nums1[i] > nums2[j]) {
       nums1[k] = nums1[i];
       i--;
@@ -46,4 +46,4 @@ export function merge(nums1: number[], nums2: number[]) {
 
   return nums1;
 }
-console.log(merge([8, 19], [3, 6, 7, 8, 9]));
+console.log(merge([10, 60, 70], [2, 6]));
