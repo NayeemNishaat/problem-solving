@@ -1,18 +1,52 @@
-// Suppose these are versions : true true true true true [false] false false false false false
-// Target : need to find the version which is false but next one true OR which is true but previous one is false
-// Aprroach : Binary Search
-
-var solution = function (isBadVersion: any) {
-  return function (n: number): number {
-    let left = 1,
-      right = n;
-
-    while (right >= left) {
-      const mid = Math.trunc((right + left) / 2);
-      if (left === right) return left;
-      if (isBadVersion(mid)) right = mid;
-      else left = mid + 1;
+const obj = {
+  firstName: "Abdur",
+  middleName: "N/A",
+  lastName: "Rahman",
+  courses: {
+    cs101: {
+      teachers: ["Jalal", "-", "Mohsin"]
+    },
+    cs102: {
+      teachers: [
+        "Mahbub",
+        "Joarder",
+        {
+          firstName: "Hossain",
+          middleName: "",
+          lastName: "Mohsin"
+        }
+      ]
     }
-    // return left;
-  };
+  },
+  hobbies: [""]
 };
+
+function generic(obj) {
+  // Object.values(obj).forEach(v=>{
+  //   if(v==="N/A")
+  // })
+
+  for (const key in obj) {
+    if (obj[key] === "N/A") delete obj[key];
+    if (obj[key] === "") delete obj[key];
+    if (obj[key] === "-") delete obj[key];
+
+    if (Array.isArray(obj[key])) {
+      if (obj[key].length === 1) {
+        obj[key][0] === "";
+        delete obj[key];
+      }
+
+      obj[key] = obj[key]?.filter((el) => {
+        if (el !== "-" && el !== "N/A" && el !== "") return true;
+      });
+    }
+
+    if (typeof obj[key] === "object" /* && !Array.isArray(obj[key]) */) {
+      generic(obj[key]);
+    }
+  }
+
+  return obj;
+}
+console.log(JSON.stringify(generic(obj), null, 2));
