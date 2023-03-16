@@ -1,4 +1,4 @@
-function climbStairs(n: number) {
+export function climbStairs(n: number) {
   n = ++n;
   function fib(n: number) {
     if (n < 2) return n;
