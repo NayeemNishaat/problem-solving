@@ -1,12 +1,15 @@
-function climbStairs(n: number) {
-  const hash = {};
-  function fib(n: number) {
-    if (n < 0) return 0;
-    else if (n === 0) return 1;
+function generic(arr: number[]) {
+  let left = 0,
+    right = 1,
+    maxProfit = 0,
+    currentProfit = 0;
 
-    if (hash[n]) return hash[n];
-    else return (hash[n] = fib(n - 1) + fib(n - 3));
+  while (right < arr.length) {
+    currentProfit = arr[right] - arr[left];
+    maxProfit = Math.max(currentProfit, maxProfit);
+    if (arr[left] > arr[right]) left = right;
+    right++;
   }
-  return fib(n);
+  return maxProfit;
 }
-console.log(climbStairs(6)); // 1/3 steps each time
+console.log(generic([7, 1, 5, 3, 6, 4]));
