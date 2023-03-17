@@ -1,15 +1,12 @@
 function generic(arr: number[]) {
-  let left = 0,
-    right = 1,
-    maxProfit = 0,
-    currentProfit = 0;
-
-  while (right < arr.length) {
-    currentProfit = arr[right] - arr[left];
-    maxProfit = Math.max(currentProfit, maxProfit);
-    if (arr[left] > arr[right]) left = right;
-    right++;
+  let max = -Infinity;
+  for (let i = 0; i < arr.length; i++) {
+    let current = arr[i];
+    for (let j = 0; j < arr.length; j++) {
+      if (i !== j) current += arr[j];
+      max = Math.max(max, current);
+    }
   }
-  return maxProfit;
+  return max;
 }
-console.log(generic([7, 1, 5, 3, 6, 4]));
+console.log(generic([5, 4, -1, 7, 8]));
