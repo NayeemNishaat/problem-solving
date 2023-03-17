@@ -1,11 +1,11 @@
 function generic(arr: number[]) {
   let max = -Infinity;
+  let currentMax = 0;
   for (let i = 0; i < arr.length; i++) {
-    let current = arr[i];
-    for (let j = 0; j < arr.length; j++) {
-      if (i !== j) current += arr[j];
-      max = Math.max(max, current);
-    }
+    currentMax += arr[i];
+    if (currentMax < arr[i]) currentMax = arr[i];
+
+    max = Math.max(max, currentMax);
   }
   return max;
 }
