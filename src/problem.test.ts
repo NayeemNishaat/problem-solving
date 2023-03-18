@@ -1,12 +1,10 @@
-function generic(arr: number[]) {
-  let max = -Infinity;
-  let currentMax = 0;
-  for (let i = 0; i < arr.length; i++) {
-    currentMax += arr[i];
-    if (currentMax < arr[i]) currentMax = arr[i];
-
-    max = Math.max(max, currentMax);
+function rob(nums: number[]): number {
+  const hash = {};
+  function recurse(nums: number[], len: number) {
+    if (len <= 0) return 0;
+    //
+    return Math.max(recurse(nums, len - 2) + nums[len], recurse(nums, len - 1));
   }
-  return max;
+  return recurse(nums, nums.length - 1);
 }
-console.log(generic([5, 4, -1, 7, 8]));
+console.log(rob([1, 3, 1, 3, 100]));
