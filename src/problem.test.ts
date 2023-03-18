@@ -1,13 +1,13 @@
 function rob(nums: number[]): number {
-  let prev = 0,
+  let prevMax = 0,
     max = 0;
 
-  for (let i = 0, n = nums.length; i < n; i++) {
+  for (let i = 0; i < nums.length; i++) {
     const temp = max;
-    const currentMax = prev + nums[i];
+    const currentMax = prevMax + nums[i];
     if (currentMax > max) max = currentMax;
-    prev = temp;
+    prevMax = temp;
   }
-  return Math.max(prev, max);
+  return Math.max(prevMax, max);
 }
-console.log(rob([1, 2, 3, 1]));
+console.log(rob([4, 1, 2, 7, 5, 3, 1]));
