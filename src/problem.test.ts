@@ -1,26 +1,24 @@
-class Solution {
-  nums: number[] = [];
-  constructor(nums: number[]) {
-    this.nums = nums;
-  }
-
-  reset(): number[] {
-    return this.nums;
-  }
-
-  shuffle(): number[] {
-    const nums = this.nums.slice();
-    for (let i = 0; i < nums.length; i++) {
-      const idx = Math.floor(Math.random() * nums.length) as number;
-      [nums[idx], nums[i]] = [nums[i], nums[idx]];
+function canPlaceFlowers(flowerbed: number[], n: number): boolean {
+  let count = 0;
+  for (let i = 0; i < flowerbed.length && n >= 0; i++) {
+    if (
+      (i === 0 || flowerbed[i - 1] === 0) &&
+      flowerbed[i] === 0 &&
+      (i === flowerbed.length - 1 || flowerbed[i + 1] === 0) &&
+      flowerbed[i] === 0
+      // (flowerbed[i - 1] === 0 &&
+      //   flowerbed[i + 1] === 0 &&
+      //   flowerbed[i] === 0) ||
+      // (i === 0 && flowerbed[i + 1] === 0 && flowerbed[i] === 0) ||
+      // (i === flowerbed.length - 1 &&
+      //   flowerbed[i - 1] === 0 &&
+      //   flowerbed[i] === 0)
+    ) {
+      (flowerbed[i] = 1), count++;
+      if (count === n) return true;
     }
-    return nums;
   }
-}
 
-/**
- * Your Solution object will be instantiated and called as such:
- * var obj = new Solution(nums)
- * var param_1 = obj.reset()
- * var param_2 = obj.shuffle()
- */
+  return count >= n;
+}
+console.log(canPlaceFlowers([0], 1));
