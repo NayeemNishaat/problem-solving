@@ -1,4 +1,4 @@
-function countPrimes(n: number): number {
+export function countPrimes(n: number): number {
   const arr = new Array(n);
   let res = 0;
 
