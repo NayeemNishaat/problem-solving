@@ -1,13 +1,4 @@
-function countPrimes(n: number): number {
-  const arr = new Array(n);
-  let res = 0;
-
-  for (let i = 2; i < n; i++)
-    if (!arr[i]) {
-      for (let j = i * i; j < n; j += i) arr[j] = true;
-      res++;
-    }
-
-  return res;
+function isPowerOfThree(n: number): boolean {
+  return (Math.log10(n) / Math.log10(3)) % 1 === 0;
 }
-console.log(countPrimes(4));
+console.log(isPowerOfThree(27));
