@@ -1,16 +1,16 @@
-function generate(numRows: number): number[][] {
-  const res: number[][] = [];
-  for (let i = 1; i <= numRows; i++) {
-    i === 1 && res.push([1]);
-    if (i > 1) {
-      const tempRes = [1];
-      for (let j = 0; j < i - 2; j++)
-        tempRes.push(res[i - 2][j] + res[i - 2][j + 1]);
+function missingNumber(nums: number[]): number {
+  nums.sort((a, b) => a - b);
 
-      tempRes.push(1);
-      res.push(tempRes);
-    }
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] !== i) return i;
   }
-  return res;
+
+  return nums.length;
 }
-console.log(generate(5));
+console.log(
+  missingNumber([
+    45, 35, 38, 13, 12, 23, 48, 15, 44, 21, 43, 26, 6, 37, 1, 19, 22, 3, 11, 32,
+    4, 16, 28, 49, 29, 36, 33, 8, 9, 39, 46, 17, 41, 7, 2, 5, 27, 20, 40, 34,
+    30, 25, 47, 0, 31, 42, 24, 10, 14
+  ])
+);
