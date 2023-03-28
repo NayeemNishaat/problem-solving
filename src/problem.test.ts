@@ -1,16 +1,15 @@
-function missingNumber(nums: number[]): number {
-  nums.sort((a, b) => a - b);
-
-  for (let i = 0; i < nums.length; i++) {
-    if (nums[i] !== i) return i;
+function mincostTickets(days: number[], costs: number[]): number {
+  function helper(covered, cost) {
+    if (covered > days[days.length - 1]) return cost;
+    covered = days.find((el) => el > covered);
+    if (covered === undefined) return cost;
+    // console.log(covered, cost);
+    return Math.min(
+      helper(covered, costs[0] + cost),
+      helper(covered + 6, costs[1] + cost),
+      helper(covered + 29, costs[2] + cost)
+    );
   }
-
-  return nums.length;
+  return helper(0, 0);
 }
-console.log(
-  missingNumber([
-    45, 35, 38, 13, 12, 23, 48, 15, 44, 21, 43, 26, 6, 37, 1, 19, 22, 3, 11, 32,
-    4, 16, 28, 49, 29, 36, 33, 8, 9, 39, 46, 17, 41, 7, 2, 5, 27, 20, 40, 34,
-    30, 25, 47, 0, 31, 42, 24, 10, 14
-  ])
-);
+console.log(mincostTickets([1, 4, 6, 7, 8, 20], [2, 7, 15]));
