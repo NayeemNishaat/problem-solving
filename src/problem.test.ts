@@ -1,27 +1,34 @@
-function threeSum(nums: number[]): number[][] {
-  nums.sort((a, b) => a - b);
-  const res = [];
+function setZeroes(matrix: number[][]): void {
+  const rows = [],
+    cols = [];
 
-  for (let i = 0; i < nums.length; i++) {
-    if (nums[i] === nums[i - 1]) continue;
-
-    let left = i + 1,
-      right = nums.length - 1;
-
-    while (left < right) {
-      const sum = nums[i] + nums[left] + nums[right];
-
-      if (sum === 0) {
-        res.push([nums[i], nums[left], nums[right]]);
-        left++, right--;
-
-        while (nums[left] === nums[left - 1]) left++;
-        while (nums[right] === nums[right + 1]) right--;
-      } else if (sum > 0) right--;
-      else left++;
-    }
+  for (let i = 0; i < matrix.length; i++) {
+    const mat = matrix[i];
+    for (let j = 0; j < mat.length; j++)
+      if (mat[j] === 0) rows.push(i), cols.push(j);
   }
 
-  return res;
+  rows.forEach((row) => matrix[row].fill(0));
+  cols.forEach((col) => matrix.forEach((m) => (m[col] = 0)));
+
+  console.log(matrix);
 }
-console.log(threeSum([-1, 0, 1, 2, -1, -4]));
+console.log(
+  setZeroes([
+    [0, 1, 2, 0],
+    [3, 4, 5, 2],
+    [1, 3, 1, 5]
+  ])
+);
+
+console.dir(
+  JSON.stringify(
+    Array.from({ length: 200 }, () =>
+      Array.from({ length: 200 }, () => Math.trunc(Math.random() * 100))
+    )
+  ),
+  {
+    colors: true,
+    maxArrayLength: null
+  }
+);
