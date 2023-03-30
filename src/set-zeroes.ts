@@ -1,4 +1,4 @@
-function setZeroes(matrix: number[][]): void {
+export function setZeroes(matrix: number[][]): void {
   const rows = [],
     cols = [];
 
