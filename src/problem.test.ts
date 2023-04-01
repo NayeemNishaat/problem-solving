@@ -1,32 +1,14 @@
-function setZeroes(matrix: number[][]): void {
-  const rows = [],
-    cols = [];
+function search(nums: number[], target: number): number {
+  let left = 0,
+    right = nums.length - 1,
+    mid: number;
 
-  for (let i = 0; i < matrix.length; i++) {
-    const mat = matrix[i];
-    for (let j = 0; j < mat.length; j++)
-      if (mat[j] === 0) rows.push(i), cols.push(j);
+  while (left <= right) {
+    mid = Math.floor((left + right) / 2);
+    if (nums[mid] === target) return mid;
+    if (nums[mid] > target) right = mid - 1;
+    else left = mid + 1;
   }
-
-  rows.forEach((row) => matrix[row].fill(0));
-  cols.forEach((col) => matrix.forEach((m) => (m[col] = 0)));
-
-  console.log(matrix);
+  return -1;
 }
-console.log(
-  setZeroes([
-    [0, 1, 2, 0],
-    [3, 4, 5, 2],
-    [1, 3, 1, 5]
-  ])
-);
-
-console.dir(
-  Array.from({ length: 200 }, () =>
-    Array.from({ length: 200 }, () => Math.trunc(Math.random() * 100))
-  ),
-  {
-    colors: true,
-    maxArrayLength: null
-  }
-);
+console.log(search([-1, 0, 3, 5, 9, 12], 9));
