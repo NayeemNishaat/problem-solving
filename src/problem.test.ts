@@ -1,14 +1,30 @@
-function search(nums: number[], target: number): number {
-  let left = 0,
-    right = nums.length - 1,
-    mid: number;
+function groupAnagrams(strs: string[]): string[][] {
+  const res = [];
+  const seen = {};
 
-  while (left <= right) {
-    mid = Math.floor((left + right) / 2);
-    if (nums[mid] === target) return mid;
-    if (nums[mid] > target) right = mid - 1;
-    else left = mid + 1;
+  for (let i = 0; i < strs.length; i++) {
+    const temp = [strs[i]];
+    if (seen[strs[i]]) continue;
+
+    for (let j = 0; j < strs.length; j++) {
+      if (i === j || seen[strs[j]]) continue;
+      let a = true;
+
+      for (let k = 0; k < strs[j].length; k++) {
+        if (!strs[i].includes(strs[j][k])) {
+          a = false;
+          break;
+        }
+      }
+
+      if (a) {
+        seen[strs[j]] = true;
+        seen[strs[i]] = true;
+        temp.push(strs[j]);
+      }
+    }
+    res.push(temp);
   }
-  return -1;
+  return res;
 }
-console.log(search([-1, 0, 3, 5, 9, 12], 9));
+console.log(groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]));
