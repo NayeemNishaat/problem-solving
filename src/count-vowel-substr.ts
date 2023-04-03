@@ -1,4 +1,4 @@
-function countVowelSubstrings(w: string): number {
+export function countVowelSubstrings(w: string): number {
   const map = new Map();
 
   let vow = 0,
@@ -27,4 +27,4 @@ function countVowelSubstrings(w: string): number {
   }
   return cnt;
 }
-console.log(countVowelSubstrings("xxaiioueiiaxx"));
+console.log(countVowelSubstrings("str"));
