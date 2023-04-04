@@ -2,19 +2,25 @@ function solution(s: string) {
   const map = new Map();
   let count = 0,
     maxCount = 0,
-    right = 0;
+    prev = 0,
+    distance = 0;
 
-  for (let left = 0; left < s.length && right < s.length; ) {
-    if (map.has(s[right]))
-      map.clear(), (count = 1), left++, (right = left + 1), map.set(s[left], 1);
-    else {
-      count++;
-      maxCount = Math.max(maxCount, count);
-      map.set(s[right], 1);
-      right++;
+  for (let i = 0; i < s.length; i++) {
+    if (!map.has(s[i])) {
+      map.set(s[i], i), count++;
+    } else {
+      prev = map.get(s[i]);
+      map.set(s[i], i);
+
+      distance = i - prev;
+
+      if (distance > count) count++;
+      else count = distance;
     }
+
+    maxCount = Math.max(maxCount, count);
   }
 
   return maxCount;
 }
-console.log(solution("abbba"));
+console.log(solution("abba"));
