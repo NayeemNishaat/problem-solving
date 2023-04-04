@@ -23,4 +23,4 @@ function solution(s: string) {
   }
   return count;
 }
-console.log(solution("aeiouaa"));
+console.log(solution("aeiouae"));
