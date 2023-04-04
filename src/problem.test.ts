@@ -1,26 +1,20 @@
 function solution(s: string) {
-  let count = 0,
-    left = 0,
-    right = 0,
-    uniqueVow = 0;
   const map = new Map();
-  ["a", "e", "i", "o", "u"].forEach((v) => map.set(v, 0));
+  let count = 0,
+    maxCount = 0,
+    right = 0;
 
-  for (let i = 0; i < s.length; i++) {
-    if (map.has(s[i])) {
-      map.set(s[i], map.get(s[i]) + 1);
-      if (map.get(s[i]) === 1) uniqueVow++;
-      while (uniqueVow === 5) {
-        map.set(s[right], map.get(s[right]) - 1);
-        if (map.get(s[right]) === 0) uniqueVow--;
-        right++;
-      }
-      count += right - left;
-    } else {
-      ["a", "e", "i", "o", "u"].forEach((v) => map.set(v, 0));
-      (left = i + 1), (right = i + 1);
+  for (let left = 0; left < s.length && right < s.length; ) {
+    if (map.has(s[right]))
+      map.clear(), (count = 1), left++, (right = left + 1), map.set(s[left], 1);
+    else {
+      count++;
+      maxCount = Math.max(maxCount, count);
+      map.set(s[right], 1);
+      right++;
     }
   }
-  return count;
+
+  return maxCount;
 }
-console.log(solution("aeiouae"));
+console.log(solution("abbba"));
