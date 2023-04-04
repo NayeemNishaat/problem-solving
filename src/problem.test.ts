@@ -1,26 +1,21 @@
 function solution(s: string) {
   const map = new Map();
-  let count = 0,
-    maxCount = 0,
-    prev = 0,
-    distance = 0;
+  let maxCount = 0,
+    left = 0;
 
-  for (let i = 0; i < s.length; i++) {
-    if (!map.has(s[i])) {
-      map.set(s[i], i), count++;
+  for (let right = 0; right < s.length; ) {
+    if (!map.has(s[right])) {
+      map.set(s[right], right);
     } else {
-      prev = map.get(s[i]);
-      map.set(s[i], i);
-
-      distance = i - prev;
-
-      if (distance > count) count++;
-      else count = distance;
+      const prev = map.get(s[right]);
+      map.set(s[right], right);
+      if (prev >= left) left = prev + 1;
     }
+    right++;
 
-    maxCount = Math.max(maxCount, count);
+    maxCount = Math.max(maxCount, right - left);
   }
 
   return maxCount;
 }
-console.log(solution("abba"));
+console.log(solution("dvdf"));
