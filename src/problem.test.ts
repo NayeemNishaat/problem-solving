@@ -9,7 +9,7 @@ function solution(s: string) {
       (right = i), (left = i - 1);
       while (s[left] === s[right] && left >= 0 && right < s.length)
         left--, right++;
-      // console.log(left, right);
+
       if (max.length < right-- - left++) max = s.slice(left, right + 1);
     }
 
@@ -18,11 +18,10 @@ function solution(s: string) {
       while (s[left] === s[right] && left >= 0 && right < s.length)
         left--, right++;
 
-      // console.log(left, right, 5);
       if (max.length < right-- - left++) max = s.slice(left, right + 1);
     }
   }
 
   return max ? max : s[0];
 }
-console.log(solution("abcd"));
+console.log(solution("abcddd"));
