@@ -1,21 +1,25 @@
-function solution(s: string) {
-  const map = new Map();
-  let maxCount = 0,
-    left = 0;
+function solution(s: number[]) {
+  s = s.sort((a, b) => a - b);
+  const res: number[][] = [];
 
-  for (let right = 0; right < s.length; ) {
-    if (!map.has(s[right])) {
-      map.set(s[right], right);
-    } else {
-      const prev = map.get(s[right]);
-      map.set(s[right], right);
-      if (prev >= left) left = prev + 1;
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] === s[i - 1]) continue;
+    let left = i + 1,
+      right = s.length - 1;
+
+    while (left < right) {
+      const sum = s[i] + s[left] + s[right];
+
+      if (sum === 0) {
+        res.push([s[i], s[left], s[right]]);
+        left++, right--;
+
+        while (s[left] === s[left - 1]) left++;
+        while (s[right] === s[right + 1]) right--;
+      } else if (sum > 0) right--;
+      else left++;
     }
-    right++;
-
-    maxCount = Math.max(maxCount, right - left);
   }
-
-  return maxCount;
+  return res;
 }
-console.log(solution("dvdf"));
+console.log(solution([-1, 0, 1, 2, -1, -4]));
