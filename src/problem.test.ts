@@ -1,25 +1,28 @@
-function solution(s: number[]) {
-  s = s.sort((a, b) => a - b);
-  const res: number[][] = [];
+function solution(s: string) {
+  if (s.length < 2) return s;
+  let left = 0,
+    right = 0,
+    max = "";
 
   for (let i = 0; i < s.length; i++) {
-    if (s[i] === s[i - 1]) continue;
-    let left = i + 1,
-      right = s.length - 1;
+    if (s[i - 1] === s[i]) {
+      (right = i), (left = i - 1);
+      while (s[left] === s[right] && left >= 0 && right < s.length)
+        left--, right++;
+      // console.log(left, right);
+      if (max.length < right-- - left++) max = s.slice(left, right + 1);
+    }
 
-    while (left < right) {
-      const sum = s[i] + s[left] + s[right];
+    if (s[i - 1] === s[i + 1]) {
+      (right = i + 1), (left = i - 1);
+      while (s[left] === s[right] && left >= 0 && right < s.length)
+        left--, right++;
 
-      if (sum === 0) {
-        res.push([s[i], s[left], s[right]]);
-        left++, right--;
-
-        while (s[left] === s[left - 1]) left++;
-        while (s[right] === s[right + 1]) right--;
-      } else if (sum > 0) right--;
-      else left++;
+      // console.log(left, right, 5);
+      if (max.length < right-- - left++) max = s.slice(left, right + 1);
     }
   }
-  return res;
+
+  return max ? max : s[0];
 }
-console.log(solution([-1, 0, 1, 2, -1, -4]));
+console.log(solution("abcd"));
