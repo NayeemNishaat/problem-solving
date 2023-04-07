@@ -1,27 +1,14 @@
-function solution(s: string) {
-  if (s.length < 2) return s;
-  let left = 0,
-    right = 0,
-    max = "";
+function increasingTriplet(nums: number[]): boolean {
+  if (nums.length < 3) return false;
+  let min = Infinity,
+    mid = Infinity;
 
-  for (let i = 0; i < s.length; i++) {
-    if (s[i - 1] === s[i]) {
-      (right = i), (left = i - 1);
-      while (s[left] === s[right] && left >= 0 && right < s.length)
-        left--, right++;
-
-      if (max.length < right-- - left++) max = s.slice(left, right + 1);
-    }
-
-    if (s[i - 1] === s[i + 1]) {
-      (right = i + 1), (left = i - 1);
-      while (s[left] === s[right] && left >= 0 && right < s.length)
-        left--, right++;
-
-      if (max.length < right-- - left++) max = s.slice(left, right + 1);
-    }
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] > mid) return true;
+    else if (nums[i] > min && nums[i] < mid) mid = nums[i];
+    else if (nums[i] < min) min = nums[i];
   }
-
-  return max ? max : s[0];
+  return false;
 }
-console.log(solution("abcddd"));
+console.log(increasingTriplet([4, 5, 6777, 1, 2]));
+[20, 100, 10, 12, 5, 13];
