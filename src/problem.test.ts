@@ -1,19 +1,29 @@
-function solution(nums: number[]) {
-  if (nums.length < 3) return false;
-  let tiny = Infinity,
-    small = Infinity,
-    midium = Infinity,
-    large = Infinity,
-    huge = Infinity;
+function countAndSay(n: number): string {
+  function helper(str: string): string {
+    const map = new Map();
 
-  for (let i = 0; i < nums.length; i++) {
-    if (nums[i] > large) huge = Math.min(huge, nums[i]);
-    if (nums[i] > midium) /*  large = Math.min(large, nums[i]); */ return true;
-    if (nums[i] > small) midium = Math.min(midium, nums[i]);
-    if (nums[i] > tiny) small = Math.min(small, nums[i]);
-    if (nums[i] < tiny) tiny = Math.min(tiny, nums[i]);
+    for (let i = 0; i < str.length; i++) {
+      if (map.has(str[i])) map.set(str[i], map.get(str[i]) + 1);
+      else map.set(str[i], 1);
+    }
+
+    const arr = [];
+    map.forEach((v, k) => {
+      arr.push(`${v}${k}`);
+    });
+
+    return arr.join("");
   }
-  return false;
-  // return { tiny, small, midium, large, huge };
+
+  let str = "1";
+  for (let i = 1; i < n; i++) {
+    str = helper(str);
+  }
+
+  return str;
 }
-console.log(solution([10, 100, 20, 0, 0, 140, 0, 0, 0, 1000]));
+console.log(countAndSay(5));
+// 1
+// 11
+// 21
+// 1211
