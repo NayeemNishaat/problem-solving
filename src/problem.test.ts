@@ -13,6 +13,7 @@ function solution(nums: number[]) {
     if (nums[i] > tiny) small = Math.min(small, nums[i]);
     if (nums[i] < tiny) tiny = Math.min(tiny, nums[i]);
   }
-  return { tiny, small, midium, large, huge };
+  return false;
+  // return { tiny, small, midium, large, huge };
 }
 console.log(solution([10, 100, 20, 0, 0, 140, 0, 0, 0, 1000]));
