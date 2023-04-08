@@ -1,29 +1,17 @@
 function countAndSay(n: number): string {
   function helper(str: string): string {
-    const map = new Map();
+    const arr = [];
+    let count = 1;
 
     for (let i = 0; i < str.length; i++) {
-      if (map.has(str[i])) map.set(str[i], map.get(str[i]) + 1);
-      else map.set(str[i], 1);
+      if (str[i] === str[i + 1]) count++;
+      else arr.push([count, str[i]]), (count = 1);
     }
-
-    const arr = [];
-    map.forEach((v, k) => {
-      arr.push(`${v}${k}`);
-    });
-
-    return arr.join("");
+    return arr.reduce((acc, curr) => (acc += curr.join("")), "");
   }
 
   let str = "1";
-  for (let i = 1; i < n; i++) {
-    str = helper(str);
-  }
-
+  for (let i = 1; i < n; i++) str = helper(str);
   return str;
 }
 console.log(countAndSay(5));
-// 1
-// 11
-// 21
-// 1211
