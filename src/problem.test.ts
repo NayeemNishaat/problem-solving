@@ -1,17 +1,7 @@
-function countAndSay(n: number): string {
-  function helper(str: string): string {
-    const arr = [];
-    let count = 1;
-
-    for (let i = 0; i < str.length; i++) {
-      if (str[i] === str[i + 1]) count++;
-      else arr.push([count, str[i]]), (count = 1);
-    }
-    return arr.reduce((acc, curr) => (acc += curr.join("")), "");
-  }
-
-  let str = "1";
-  for (let i = 1; i < n; i++) str = helper(str);
-  return str;
+const arr = [];
+function solution(nums: number[]) {
+  if (!nums.length) return 0;
+  const num = nums.shift();
+  return num + solution(nums);
 }
-console.log(countAndSay(5));
+console.log(solution([3, 2, 1, 7]));
