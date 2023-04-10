@@ -11,19 +11,30 @@ class TreeNode {
 
 const root = new TreeNode(1, null, new TreeNode(2, new TreeNode(3), null));
 
-function inorderTraversal(root: TreeNode | null): number[] {
-  const res = [],
-    stack = [];
+function zigzagLevelOrder(root: TreeNode | null): number[][] {
+  if (!root) return [];
 
-  while (stack.length || root) {
-    if (root) stack.push(root), (root = root.left);
-    else {
-      const currentNode = stack.pop();
-      res.push(currentNode.val);
-      root = currentNode.right;
+  const res = [],
+    queue = [root];
+  let lvl = 0;
+
+  while (queue.length) {
+    const len = queue.length;
+    const temp = [];
+
+    for (let i = 0; i < len; i++) {
+      const currentNode = queue.shift();
+      temp.push(currentNode.val);
+
+      currentNode.left && queue.push(currentNode.left);
+      currentNode.right && queue.push(currentNode.right);
     }
+
+    if (lvl % 2 === 1) temp.reverse();
+    res.push(temp);
+    lvl++;
   }
 
   return res;
 }
-console.log(inorderTraversal(root));
+console.log(zigzagLevelOrder(root));
