@@ -1,44 +1,10 @@
-class TreeNode {
-  val: number;
-  left: TreeNode | null;
-  right: TreeNode | null;
-  next: TreeNode | null;
-  constructor(
-    val?: number,
-    left?: TreeNode,
-    right?: TreeNode,
-    next?: TreeNode
-  ) {
-    this.val = val === undefined ? 0 : val;
-    this.left = left === undefined ? null : left;
-    this.right = right === undefined ? null : right;
-    this.next = next === undefined ? null : next;
+function removeStars(s: string): string {
+  let ns = "";
+  for (let i = 0; i < s.length; i++) {
+    if (s[i + 1] === "*") return removeStars(ns + s.slice(i + 2));
+    else ns += s[i];
   }
+  return ns;
 }
-
-const root = new TreeNode(
-  1,
-  new TreeNode(2, new TreeNode(4), new TreeNode(5)),
-  new TreeNode(3, new TreeNode(6), new TreeNode(7))
-);
-
-function connect(root: TreeNode | null) {
-  if (!root) return null;
-  const queue = [root];
-
-  while (queue.length) {
-    let len = queue.length;
-
-    for (let i = 0; i < len; i++) {
-      const currentNode = queue.shift();
-      currentNode.next = queue[0];
-
-      if (i === len - 1) currentNode.next = null;
-
-      currentNode.left && queue.push(currentNode.left);
-      currentNode.right && queue.push(currentNode.right);
-    }
-  }
-  return root;
-}
-console.log(connect(null));
+console.log(removeStars(Array(1000).fill("fhh**j*we*").join("")));
+// console.log(Array(10000).fill("fhh**j*we*").join(""));
