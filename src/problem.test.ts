@@ -15,8 +15,6 @@ function removeStars(s: string): string {
     } else i++;
   }
   return s; */
-
-  // Part: Recursive but CallStack Size Exceeds
 }
 console.log(removeStars("abb*cdfg*****x*"));
 console.log(removeStars("leet**cod*e"));
