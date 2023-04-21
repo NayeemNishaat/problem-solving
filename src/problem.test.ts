@@ -1,51 +1,30 @@
-function removeStars(s: string): string {
-  // Part: With Array
-  const sArr = [];
-  for (let i = 0; i < s.length; i++) {
-    if (s[i] === "*") sArr.pop();
-    else sArr.push(s[i]);
+class TreeNode {
+  val: number;
+  left: TreeNode | null;
+  right: TreeNode | null;
+  constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {
+    this.val = val === undefined ? 0 : val;
+    this.left = left === undefined ? null : left;
+    this.right = right === undefined ? null : right;
   }
-  return sArr.join("");
-
-  // Part: Without Array
-  /* for (let i = 0; i < s.length; ) {
-    if (s[i + 1] === "*") {
-      s = s.slice(0, i) + s.slice(i + 2);
-      i--;
-    } else i++;
-  }
-  return s; */
 }
-console.log(removeStars("abb*cdfg*****x*"));
-console.log(removeStars("leet**cod*e"));
-// console.log(Array(10000).fill("fhh**j*we*").join(""));
-// console.log(Array(10000).fill("fhh**j*we*").join(""));
 
-// Test:
-// const map = new Map();
-// let count = 0,
-//   currentIndex = Infinity,
-//   ini = Infinity;
-// // Part: Count Contageous Stars
-// for (let i = 0; i < s.length; i++) {
-//   if (s[i] === "*" && s[i + 1] === "*") {
-//     count++;
-//     if (ini + 1 === i) map.set(currentIndex, count), ini++;
-//     else (currentIndex = i), (ini = i);
-//   } else if (s[i] === "*") {
-//     count++;
-//     if (ini + 1 === i) map.set(currentIndex, count), ini++;
-//     else map.set(i, count);
-//   } else count = 0;
-// }
-// // Part: Remove Items From String
-// let ns = "",
-//   b = 0;
-// map.forEach((v, k) => {
-//   ns = s.slice(b, k - v);
-//   ns += s.slice(k + v);
-//   // b = k + v;
-//   console.log(ns);
-// });
-// ns += s.slice(b);
-// return ns;
+const tree = new TreeNode(
+  3,
+  new TreeNode(1, null, new TreeNode(2)),
+  new TreeNode(4)
+);
+
+function kthSmallest(root: TreeNode | null, k: number): number {
+  const vals = [];
+
+  function dfs(root: TreeNode) {
+    root.left && dfs(root.left);
+    vals.push(root.val);
+    root.right && dfs(root.right);
+  }
+  dfs(root);
+
+  return vals[k - 1];
+}
+console.log(kthSmallest(tree, 1));
