@@ -7,11 +7,6 @@ function numIslands(grid: string[][]): number {
     queue.push([i, j]);
     visited.set(`${i}${j}`, true);
 
-    // if (grid[i - 1]?.[j] === "0" || grid[i - 1]?.[j] === undefined) temp++;
-    // if (grid[i + 1]?.[j] === "0" || grid[i + 1]?.[j] === undefined) temp++;
-    // if (grid[i][j - 1] === "0" || grid[i][j - 1] === undefined) temp++;
-    // if (grid[i][j + 1] === "0" || grid[i][j + 1] === undefined) temp++;
-
     while (queue.length) {
       const [r, c] = queue.shift();
 
