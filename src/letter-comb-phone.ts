@@ -9,7 +9,29 @@ const dict = {
   9: "wxyz"
 };
 
-export function letterCombinations(digits: string): string[] {}
+export function letterCombinations(digits: string): string[] {
+  if (digits === "") return [];
+  const digitsArr = digits.split("").reverse();
+  const digitsLength = digitsArr.length;
+  if (digitsLength === 1) return Array.from(dict[+digitsArr.pop()]);
+
+  function recursive(str1: string[] | string, str2: string) {
+    if (!str2) return [];
+
+    const arr1 = Array.from(str1);
+    const arr2 = Array.from(str2);
+
+    const newArr = [];
+    for (let i = 0; i < arr1.length; i++)
+      for (let j = 0; j < arr2.length; j++) newArr.push(arr1[i] + arr2[j]);
+
+    return newArr.concat(recursive(newArr, dict[+digitsArr.pop()]));
+  }
+
+  return recursive(dict[+digitsArr.pop()], dict[+digitsArr.pop()]).filter(
+    (el: string) => el.length === digitsLength
+  );
+}
 
 const res = letterCombinations("234");
 console.log(res);
