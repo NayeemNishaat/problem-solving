@@ -40,7 +40,6 @@ console.log(res);
   if (!digits) return [];
 
   const dict: { [key: string]: string[] } = {
-    "1": null,
     "2": ["a", "b", "c"],
     "3": ["d", "e", "f"],
     "4": ["g", "h", "i"],
@@ -54,7 +53,6 @@ console.log(res);
   let res: string[] = [""];
   for (const d of digits) {
     const chars = dict[d];
-    if (!chars) continue;
 
     const temp: string[] = [];
     for (const c of chars) for (const str of res) temp.push(str + c);
