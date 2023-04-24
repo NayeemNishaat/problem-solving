@@ -1,15 +1,15 @@
-const dict = {
-  2: "abc",
-  3: "def",
-  4: "ghi",
-  5: "jkl",
-  6: "mno",
-  7: "pqrs",
-  8: "tuv",
-  9: "wxyz"
-};
-
 export function letterCombinations(digits: string): string[] {
+  const dict = {
+    2: "abc",
+    3: "def",
+    4: "ghi",
+    5: "jkl",
+    6: "mno",
+    7: "pqrs",
+    8: "tuv",
+    9: "wxyz"
+  };
+
   if (digits === "") return [];
   const digitsArr = digits.split("").reverse();
   const digitsLength = digitsArr.length;
@@ -33,10 +33,10 @@ export function letterCombinations(digits: string): string[] {
   );
 }
 
-const res = letterCombinations("234");
+const res = letterCombinations("2345");
 console.log(res);
 
-/* function letterCombinations(digits: string): string[] {
+/* export function letterCombinations(digits: string): string[] {
   if (!digits) return [];
 
   const dict: { [key: string]: string[] } = {
@@ -52,12 +52,12 @@ console.log(res);
   };
 
   let res: string[] = [""];
-  for (const c of digits) {
-    const list = dict[c];
-    if (!list) continue;
+  for (const d of digits) {
+    const chars = dict[d];
+    if (!chars) continue;
 
     const temp: string[] = [];
-    for (const l of list) for (const str of res) temp.push(str + l);
+    for (const c of chars) for (const str of res) temp.push(str + c);
     res = temp;
   }
   return res;
