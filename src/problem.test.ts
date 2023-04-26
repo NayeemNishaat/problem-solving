@@ -1,17 +1,18 @@
 function solution(nums: number[]) {
   const stack = [],
-    res = [];
+    res = [],
+    len = nums.length;
 
-  function backtrack() {
-    if (stack.length === nums.length) return res.push(Array.from(stack));
+  function backtrack(stack: number[], nums: number[]) {
+    if (stack.length === len) return res.push(Array.from(stack));
 
     for (let i = 0; i < nums.length; i++) {
       stack.push(nums[i]);
-      backtrack();
+      backtrack(stack, [...nums.slice(0, i), ...nums.slice(i + 1)]);
       stack.pop();
     }
   }
-  backtrack();
+  backtrack(stack, nums);
   return res;
 }
-console.log(solution([1, 2, 3]));
+console.log(solution([1, 2, 2]));
