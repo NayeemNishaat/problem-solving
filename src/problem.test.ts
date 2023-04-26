@@ -1,18 +1,14 @@
-function solution(n: number, nums: number[]) {
-  const stack = [],
-    res = [];
+function solution(num: number) {
+  let res = Array.from({ length: num }, () => []);
+  let n = 1;
 
-  function backtrack(curr: number) {
-    if (stack.length) res.push(stack.join(""));
-    if (n === curr) return;
-
-    for (let i = 0; i < nums.length; i++) {
-      stack.push(nums[i]);
-      backtrack(curr + 1);
-      stack.pop();
+  for (let i = 0; i < num; i++) {
+    for (let j = 0; j < i + 1; j++) {
+      res[i][j] = n;
+      n++;
     }
   }
-  backtrack(0);
+
   return res;
 }
-console.log(solution(3, [1, 2, 3]));
+console.log(solution(6));
