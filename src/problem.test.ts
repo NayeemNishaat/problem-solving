@@ -1,16 +1,18 @@
-function generateParenthesis(n: number): string[] {
+function solution(n: number, nums: number[]) {
   const stack = [],
     res = [];
 
-  function backtrack(open: number, close: number) {
-    if (open === close && open === n) return res.push(stack.join(""));
+  function backtrack(curr: number) {
+    if (stack.length) res.push(stack.join(""));
+    if (n === curr) return;
 
-    if (open < n) stack.push("("), backtrack(open + 1, close), stack.pop();
-    if (close < open) stack.push(")"), backtrack(open, close + 1), stack.pop();
+    for (let i = 0; i < nums.length; i++) {
+      stack.push(nums[i]);
+      backtrack(curr + 1);
+      stack.pop();
+    }
   }
-  backtrack(0, 0);
-
+  backtrack(0);
   return res;
 }
-
-console.log(generateParenthesis(3));
+console.log(solution(3, [1, 2, 3]));
