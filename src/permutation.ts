@@ -1,4 +1,4 @@
-export function permute(nums: number[]): number[][] {
+/* export function permute(nums: number[]): number[][] {
   const result: number[][] = [];
 
   function dfs(n = 0) {
@@ -15,3 +15,28 @@ export function permute(nums: number[]): number[][] {
   return result;
 }
 console.log(permute([1, 1, 2, 2]));
+ */
+
+/* function uniquePermutation(nums: number[]) {
+  const stack = [],
+    res = [],
+    len = nums.length;
+
+  nums.sort((a, b) => a - b);
+
+  function backtrack(stack: number[], nums: number[]) {
+    if (stack.length === len) return res.push(Array.from(stack));
+
+    for (let i = 0; i < nums.length; i++) {
+      if (nums[i] === nums[i - 1]) continue;
+
+      stack.push(nums[i]);
+      backtrack(stack, [...nums.slice(0, i), ...nums.slice(i + 1)]);
+      stack.pop();
+    }
+  }
+  backtrack(stack, nums);
+  return res;
+}
+console.log(uniquePermutation([1, 1, 2]));
+ */
