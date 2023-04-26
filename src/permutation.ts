@@ -40,3 +40,21 @@ console.log(permute([1, 1, 2, 2]));
 }
 console.log(uniquePermutation([1, 1, 2]));
  */
+
+function allPermutation(nums: number[]) {
+  const stack = [],
+    res = [];
+
+  function backtrack() {
+    if (stack.length === nums.length) return res.push(Array.from(stack));
+
+    for (let i = 0; i < nums.length; i++) {
+      stack.push(nums[i]);
+      backtrack();
+      stack.pop();
+    }
+  }
+  backtrack();
+  return res;
+}
+console.log(allPermutation([1, 2, 3]));
