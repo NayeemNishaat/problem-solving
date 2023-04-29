@@ -1,4 +1,4 @@
-function solution(nums: number[]) {
+export function solution(nums: number[]) {
   const res = [];
 
   function backtrack(nums: number[], prev: number[]) {
