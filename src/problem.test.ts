@@ -1,11 +1,17 @@
 function solution(nums: number[]) {
-  const newArr = [];
-  for (let i = 0; i < nums.length; i++) {
-    newArr.push([nums[i]]);
-    for (let j = i + 1; j < nums.length; j++) {
-      newArr.push([nums[i], nums[j]]);
+  const res = [];
+
+  function backtrack(nums: number[], prev: number[]) {
+    if (prev.length) res.push([...prev]);
+
+    for (let i = 0; i < nums.length; i++) {
+      prev.push(nums[i]);
+      backtrack([...nums.slice(i + 1)], prev);
+      prev.pop();
     }
   }
-  return newArr;
+  backtrack(nums, []);
+
+  return res;
 }
 console.log(solution([1, 2, 3]));
