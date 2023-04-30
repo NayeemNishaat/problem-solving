@@ -6,7 +6,7 @@ function exist(board: string[][], word: string): boolean {
     let i = 0;
 
     while (queue.length) {
-      let [x, y, k] = queue.shift();
+      let [x, y, k, px, py] = queue.shift();
       i = k;
       if (k > word.length) return i;
 
@@ -20,9 +20,10 @@ function exist(board: string[][], word: string): boolean {
       positions.forEach(([dx, dy]) => {
         const X = x + dx,
           Y = y + dy;
-        // console.log(X, Y, 7888, k);
+        if (px === X && py === Y) return;
+
         if (board[X]?.[Y] !== undefined && board[X]?.[Y] === word[k]) {
-          queue.push([X, Y, k + 1]);
+          queue.push([X, Y, k + 1, x, y]);
         }
       });
     }
@@ -33,7 +34,7 @@ function exist(board: string[][], word: string): boolean {
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < board[i].length; j++) {
       if (board[i][j] === word[0]) {
-        k = backtrack([i, j, 1]);
+        k = Math.max(backtrack([i, j, 1]), k);
       }
     }
   }
@@ -45,8 +46,8 @@ console.log(
     [
       ["A", "B", "C", "E"],
       ["S", "F", "C", "S"],
-      ["A", "D", "E", "E"]
+      ["A", "D", "S", "E"]
     ],
-    "SEE"
+    "SES"
   )
 );
