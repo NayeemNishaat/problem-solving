@@ -22,22 +22,17 @@ function exist(board: string[][], word: string): boolean {
           Y = y + dy;
         if (px === X && py === Y) return;
 
-        if (board[X]?.[Y] !== undefined && board[X]?.[Y] === word[k]) {
+        if (board[X]?.[Y] !== undefined && board[X]?.[Y] === word[k])
           queue.push([X, Y, k + 1, x, y]);
-        }
       });
     }
 
     return i;
   }
 
-  for (let i = 0; i < board.length; i++) {
-    for (let j = 0; j < board[i].length; j++) {
-      if (board[i][j] === word[0]) {
-        k = Math.max(backtrack([i, j, 1]), k);
-      }
-    }
-  }
+  for (let i = 0; i < board.length; i++)
+    for (let j = 0; j < board[i].length; j++)
+      if (board[i][j] === word[0]) k = Math.max(backtrack([i, j, k]), k);
 
   return k === word.length;
 }
@@ -46,8 +41,8 @@ console.log(
     [
       ["A", "B", "C", "E"],
       ["S", "F", "C", "S"],
-      ["A", "D", "S", "E"]
+      ["A", "D", "E", "E"]
     ],
-    "SES"
+    "ABCCED"
   )
 );
