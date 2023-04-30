@@ -46,16 +46,16 @@ console.log(uniquePermutation([1, 1, 2]));
     res = [],
     len = nums.length;
 
-  function backtrack(stack: number[], nums: number[]) {
+  function backtrack(nums: number[]) {
     if (stack.length === len) return res.push(Array.from(stack));
 
     for (let i = 0; i < nums.length; i++) {
       stack.push(nums[i]);
-      backtrack(stack, [...nums.slice(0, i), ...nums.slice(i + 1)]);
+      backtrack([...nums.slice(0, i), ...nums.slice(i + 1)]);
       stack.pop();
     }
   }
-  backtrack(stack, nums);
+  backtrack(nums);
   return res;
 }
 console.log(allPermutation([1, 2, 3])); */
