@@ -27,9 +27,11 @@ function exist(board: string[][], word: string): boolean {
           board[X]?.[Y] === word[k] &&
           !map.has(`${X},${Y}`)
         ) {
-          map = new Map(JSON.parse(JSON.stringify(Array.from(map))));
-          map.set(`${X},${Y}`, true);
-          queue.push([X, Y, k + 1, map]);
+          // map = new Map(JSON.parse(JSON.stringify(Array.from(map))));
+          // map = new Map(map); Important: Don't reassign reference type rather create new variable. ↓
+          const newMap = new Map(map); // Note: Shallow Copy
+          newMap.set(`${X},${Y}`, true);
+          queue.push([X, Y, k + 1, newMap]);
         }
       });
     }
@@ -45,16 +47,26 @@ function exist(board: string[][], word: string): boolean {
         k = Math.max(backtrack([i, j, 1, map]), k);
       }
 
-  console.log(k);
   return k === word.length;
 }
 console.log(
   exist(
     [
-      ["a", "a", "a", "a"],
-      ["a", "a", "a", "a"],
-      ["a", "a", "a", "a"]
+      ["A", "A", "A", "A", "A", "A"],
+      ["A", "A", "A", "A", "A", "A"],
+      ["A", "A", "A", "A", "A", "A"],
+      ["A", "A", "A", "A", "A", "A"],
+      ["A", "A", "A", "A", "A", "A"],
+      ["A", "A", "A", "A", "A", "A"]
     ],
-    "aaaaaaaaaaaaa"
+    "AAAAAAAAAAAAAAB"
   )
 );
+// [["A","B","C","E"],["S","F","E","S"],["A","D","E","E"]]
+// ABCESEEEFS
+// [
+//   ["a", "a", "a", "a"],
+//   ["a", "a", "a", "a"],
+//   ["a", "a", "a", "a"]
+// ],
+// "aaaaaaaaaaaaa"
