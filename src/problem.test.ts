@@ -1,65 +1,45 @@
 function exist(board: string[][], word: string): boolean {
-  let k = 0;
+  const map = new Map();
 
-  function backtrack(coords: any[]) {
-    const queue = [coords];
-    let i = 0;
+  function dfs(r: number, c: number, i: number) {
+    if (i === word.length) return true;
+    if (
+      board[r]?.[c] === undefined ||
+      board[r]?.[c] !== word[i] ||
+      map.has(`${r},${c}`)
+    )
+      return false;
 
-    while (queue.length) {
-      let [x, y, k, map] = queue.shift();
+    // map.set(`${r},${c}`, true);
+    const temp = board[r][c];
+    board[r][c] = "";
+    const found =
+      dfs(r + 1, c, i + 1) ||
+      dfs(r - 1, c, i + 1) ||
+      dfs(r, c + 1, i + 1) ||
+      dfs(r, c - 1, i + 1);
 
-      i = k;
-      if (k > word.length) return i;
-
-      const positions = [
-        [-1, 0],
-        [1, 0],
-        [0, 1],
-        [0, -1]
-      ];
-
-      positions.forEach(([dx, dy]) => {
-        const X = x + dx,
-          Y = y + dy;
-
-        if (
-          board[X]?.[Y] !== undefined &&
-          board[X]?.[Y] === word[k] &&
-          !map.has(`${X},${Y}`)
-        ) {
-          // map = new Map(JSON.parse(JSON.stringify(Array.from(map))));
-          // map = new Map(map); Important: Don't reassign reference type rather create new variable. ↓
-          const newMap = new Map(map); // Note: Shallow Copy
-          newMap.set(`${X},${Y}`, true);
-          queue.push([X, Y, k + 1, newMap]);
-        }
-      });
-    }
-
-    return i;
+    board[r][c] = temp;
+    // map.delete(`${r},${c}`);
+    return found;
   }
 
   for (let i = 0; i < board.length; i++)
     for (let j = 0; j < board[i].length; j++)
-      if (board[i][j] === word[0]) {
-        const map = new Map();
-        map.set(`${i},${j}`, true);
-        k = Math.max(backtrack([i, j, 1, map]), k);
+      if (board[i][j] === word[0] && dfs(i, j, 0)) {
+        return true;
       }
 
-  return k === word.length;
+  return false;
 }
 console.log(
   exist(
     [
-      ["A", "A", "A", "A", "A", "A"],
-      ["A", "A", "A", "A", "A", "A"],
-      ["A", "A", "A", "A", "A", "A"],
-      ["A", "A", "A", "A", "A", "A"],
-      ["A", "A", "A", "A", "A", "A"],
-      ["A", "A", "A", "A", "A", "A"]
+      ["A", "B", "C", "E"],
+      ["S", "F", "E", "S"],
+      ["A", "D", "E", "E"]
     ],
-    "AAAAAAAAAAAAAAB"
+    "ABCESEEEFS"
   )
 );
 // [["A","B","C","E"],["S","F","E","S"],["A","D","E","E"]]
