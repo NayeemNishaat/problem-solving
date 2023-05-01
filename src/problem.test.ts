@@ -5,11 +5,27 @@ function exist(board: string[][], word: string): boolean {
 
     const temp = board[r][c];
     board[r][c] = "";
-    const found =
-      dfs(r + 1, c, i + 1) ||
-      dfs(r - 1, c, i + 1) ||
-      dfs(r, c + 1, i + 1) ||
-      dfs(r, c - 1, i + 1);
+    let found: boolean;
+
+    const positions = [
+      [-1, 0],
+      [1, 0],
+      [0, 1],
+      [0, -1]
+    ];
+
+    positions.forEach(([dr, dc]) => {
+      const row = r + dr,
+        col = c + dc;
+
+      found = found || dfs(row, col, i + 1);
+    });
+
+    // const found =
+    //   dfs(r + 1, c, i + 1) ||
+    //   dfs(r - 1, c, i + 1) ||
+    //   dfs(r, c + 1, i + 1) ||
+    //   dfs(r, c - 1, i + 1);
 
     board[r][c] = temp;
     return found;
