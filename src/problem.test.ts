@@ -1,35 +1,14 @@
-function sortColors(nums: number[]): void {
-  // Note: Better Approach
-  let red = 0,
-    white = 0,
-    blue = nums.length - 1;
+function topKFrequent(nums: number[], k: number): number[] {
+  const map = new Map();
 
-  while (white <= blue) {
-    if (nums[white] === 0) {
-      [nums[red], nums[white]] = [nums[white], nums[red]];
-      white++, red++;
-    } else if (nums[white] === 1) white++;
-    else {
-      [nums[white], nums[blue]] = [nums[blue], nums[white]];
-      blue--;
-    }
-  }
+  for (let i = 0; i < nums.length; i++)
+    map.has(nums[i])
+      ? map.set(nums[i], map.get(nums[i]) + 1)
+      : map.set(nums[i], 1);
 
-  // Note: OK Approach
-  /*  const map = new Map();
-
-  nums.forEach((el) =>
-    map.has(el) ? map.set(el, map.get(el) + 1) : map.set(el, 1)
-  );
-
-  let i = 0,
-    zeroes = map.get(0),
-    ones = map.get(1),
-    twos = map.get(2);
-  while (zeroes) (nums[i] = 0), i++, zeroes--;
-  while (ones) (nums[i] = 1), i++, ones--;
-  while (twos) (nums[i] = 2), i++, twos--; */
-
-  console.log(nums);
+  return [...map.entries()]
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, k)
+    .map((el) => el[0]);
 }
-sortColors([2, 0, 1]);
+console.log(topKFrequent([1, 1, 1, 2, 2, 3], 2));
