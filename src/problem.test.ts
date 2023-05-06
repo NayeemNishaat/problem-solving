@@ -16,4 +16,4 @@ function findPeakElement(nums: number[]): number {
   }
   return left;
 }
-console.log(findPeakElement([8, 9, 7]));
+console.log(findPeakElement([8, 9, 7, 11]));
