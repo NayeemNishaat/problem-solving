@@ -1,11 +1,19 @@
-function findKthLargest(nums: number[], k: number): number {
-  nums.sort((a, b) => b - a);
-  return nums[k - 1];
+function findPeakElement(nums: number[]): number {
+  let left = 0,
+    right = nums.length - 1,
+    mid = 0;
+
+  while (left < right) {
+    mid = Math.floor((left + right) / 2);
+
+    if (
+      nums[mid] > (nums[mid - 1] || -Infinity) &&
+      nums[mid] > (nums[mid + 1] || -Infinity)
+    )
+      return mid;
+    else if ((nums[mid - 1] || -Infinity) > nums[mid]) right = mid - 1;
+    else left = mid + 1;
+  }
+  return left;
 }
-console.log(
-  findKthLargest(
-    Array.from({ length: 100_000 }, () => Math.round(Math.random() * 100)),
-    100000
-  )
-);
-// Array.from({ length: 100_000 }, () => Math.round(Math.random() * 100)),
+console.log(findPeakElement([8, 9, 7]));
