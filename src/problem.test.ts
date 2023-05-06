@@ -1,14 +1,11 @@
-function topKFrequent(nums: number[], k: number): number[] {
-  const map = new Map();
-
-  for (let i = 0; i < nums.length; i++)
-    map.has(nums[i])
-      ? map.set(nums[i], map.get(nums[i]) + 1)
-      : map.set(nums[i], 1);
-
-  return [...map.entries()]
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, k)
-    .map((el) => el[0]);
+function findKthLargest(nums: number[], k: number): number {
+  nums.sort((a, b) => b - a);
+  return nums[k - 1];
 }
-console.log(topKFrequent([1, 1, 1, 2, 2, 3], 2));
+console.log(
+  findKthLargest(
+    Array.from({ length: 100_000 }, () => Math.round(Math.random() * 100)),
+    100000
+  )
+);
+// Array.from({ length: 100_000 }, () => Math.round(Math.random() * 100)),
