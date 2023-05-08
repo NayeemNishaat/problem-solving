@@ -7,7 +7,7 @@ export function searchRange(nums: number[], target: number): number[] {
     found = -1;
 
   while (left <= right) {
-    mid = Math.floor((left + right) / 2);
+    mid = ((left + right) / 2) | 0;
 
     if (nums[mid] === target) {
       found = mid;
