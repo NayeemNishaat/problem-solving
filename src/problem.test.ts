@@ -1,19 +1,25 @@
-function findPeakElement(nums: number[]): number {
+function searchRange(nums: number[], target: number): number[] {
   let left = 0,
     right = nums.length - 1,
-    mid = 0;
+    mid = 0,
+    start = -1,
+    end = -1,
+    found = -1;
 
-  while (left < right) {
+  while (left <= right) {
     mid = Math.floor((left + right) / 2);
 
-    if (
-      nums[mid] > (nums[mid - 1] || -Infinity) &&
-      nums[mid] > (nums[mid + 1] || -Infinity)
-    )
-      return mid;
-    else if ((nums[mid - 1] || -Infinity) > nums[mid]) right = mid - 1;
-    else left = mid + 1;
+    if (nums[mid] === target) {
+      found = mid;
+      break;
+    } else if (nums[mid] < target) left = mid + 1;
+    else right = mid - 1;
   }
-  return left;
+
+  start = end = found;
+  while (nums[start] === target) start--;
+  while (nums[end] === target) end++;
+
+  return [++start, --end];
 }
-console.log(findPeakElement([8, 9, 7, 11]));
+console.log(searchRange([5, 7, 7, 8, 8, 10], 8));
