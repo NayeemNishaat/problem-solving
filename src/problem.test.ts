@@ -17,9 +17,10 @@ function searchRange(nums: number[], target: number): number[] {
   }
 
   start = end = found;
+  if (found === -1) return [start, end];
   while (nums[start] === target) start--;
   while (nums[end] === target) end++;
 
   return [++start, --end];
 }
-console.log(searchRange([5, 7, 7, 8, 8, 10], 8));
+console.log(searchRange([], 0));
