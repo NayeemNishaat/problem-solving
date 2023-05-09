@@ -1,26 +1,37 @@
-function searchRange(nums: number[], target: number): number[] {
-  let left = 0,
-    right = nums.length - 1,
-    mid = 0,
-    start = -1,
-    end = -1,
-    found = -1;
+function merge(intervals: number[][]): number[][] {
+  if (intervals.length === 1) return intervals;
 
-  while (left <= right) {
-    mid = Math.floor((left + right) / 2);
+  intervals.sort((a, b) => a[0] - b[0]);
+  let start = null,
+    end = null,
+    res = [];
 
-    if (nums[mid] === target) {
-      found = mid;
-      break;
-    } else if (nums[mid] < target) left = mid + 1;
-    else right = mid - 1;
+  for (let i = 1; i < intervals.length; i++) {
+    if (intervals[i - 1][1] >= intervals[i][0] || end >= intervals[i][0]) {
+      if (start === null) start = Infinity;
+      if (end === null) end = -Infinity;
+      start = Math.min(intervals[i - 1][0], intervals[i][0], start);
+      end = Math.max(intervals[i - 1][1], intervals[i][1], end);
+    } else {
+      if (i - 1 === 0) res.push(intervals[i - 1]);
+      if (start != null && end !== null) {
+        res.push([start, end]);
+        (start = null), (end = null);
+      }
+      if (intervals[i][1] < intervals[i + 1]?.[0] || i === intervals.length - 1)
+        res.push(intervals[i]);
+    }
   }
+  if (start != null && end !== null) res.push([start, end]);
 
-  start = end = found;
-  if (found === -1) return [start, end];
-  while (nums[start] === target) start--;
-  while (nums[end] === target) end++;
-
-  return [++start, --end];
+  return res;
 }
-console.log(searchRange([], 0));
+
+console.log(
+  merge([
+    [1, 4],
+    [4, 5],
+    [6, 7],
+    [0, 10]
+  ])
+);
