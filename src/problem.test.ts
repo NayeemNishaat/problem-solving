@@ -1,22 +1,11 @@
 function searchMatrix(matrix: number[][], target: number): boolean {
   let top = 0,
-    right = matrix.length;
+    right = matrix[0].length - 1;
   while (top < matrix.length && right >= 0) {
     if (matrix[top][right] === target) return true;
-    if (matrix[top][right] < target) top++;
-    else right--;
+    if (matrix[top][right] > target) right--;
+    else top++;
   }
   return false;
 }
-console.log(
-  searchMatrix(
-    [
-      [1, 4, 7, 11, 15],
-      [2, 5, 8, 12, 19],
-      [3, 6, 9, 16, 22],
-      [10, 13, 14, 17, 24],
-      [18, 21, 23, 26, 30]
-    ],
-    19
-  )
-);
+console.log(searchMatrix([[1, 3, 5]], 5));
