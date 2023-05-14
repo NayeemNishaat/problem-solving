@@ -1,4 +1,4 @@
-export function searchMatrix(matrix: number[][], target: number): boolean {
+/* export function searchMatrix(matrix: number[][], target: number): boolean {
   function bs(nums: number[]): boolean {
     let left = 0,
       right = nums.length - 1,
@@ -21,8 +21,18 @@ export function searchMatrix(matrix: number[][], target: number): boolean {
     top++;
   }
   return false;
+} */
+
+export function searchMatrix(matrix: number[][], target: number): boolean {
+  let top = 0,
+    right = matrix[0].length - 1;
+  while (top < matrix.length && right >= 0) {
+    if (matrix[top][right] === target) return true;
+    if (matrix[top][right] > target) right--;
+    else top++;
+  }
+  return false;
 }
-console.log(searchMatrix([[-5]], -5));
 
 console.log(
   searchMatrix(
