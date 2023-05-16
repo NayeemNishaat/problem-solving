@@ -1,7 +1,11 @@
 function canJump(nums: number[], i: number): boolean {
   if (i >= nums.length - 1) return true;
-
-  for (let j = nums[i]; j > 0; j--) return canJump(nums, i + j);
+  let res = false;
+  for (let j = nums[i]; j > 0; j--) {
+    console.log(j);
+    res = res || canJump(nums, i + j);
+    if (res) return true;
+  }
   return false;
 }
-console.log(canJump([3, 2, 1, 0, 4], 0));
+console.log(canJump([2, 5, 0, 0], 0));
