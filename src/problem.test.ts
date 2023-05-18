@@ -14,4 +14,4 @@ function uniquePaths(num1: number, num2: number): number {
 
   return rec(0, 0);
 }
-console.log(uniquePaths(100, 100));
+console.log(uniquePaths(50, 8));
