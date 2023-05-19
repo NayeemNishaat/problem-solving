@@ -1,9 +1,53 @@
-function uniquePaths(m: number, n: number): number {
-  const dp: number[][] = Array.from({ length: m }, () => Array(n).fill(1));
+function coinChange(coins: number[], amount: number): number {
+  if (amount === 0) return 0;
 
-  for (let i = m - 2; i >= 0; i--)
-    for (let j = n - 2; j >= 0; j--) dp[i][j] = dp[i + 1][j] + dp[i][j + 1];
+  let min = Infinity;
+  let arr = [];
+  const map = new Map();
 
-  return dp[0][0];
+  function dp(total: number) {
+    if (total > amount) return arr;
+    if (total === amount) {
+      min = Math.min(min, arr.length);
+
+      if (map.has(total) && map.get(total).length > arr.length) {
+        map.set(total, Array.from(arr));
+        // console.log("arr", arr);
+        return arr;
+      }
+    }
+
+    if (map.has(total)) {
+      // console.log(map.get(total), arr);
+      if (map.get(total).length > arr.length) {
+        // console.log(arr);
+        map.set(total, Array.from(arr));
+
+        if (total !== 4) return arr;
+      }
+      // return map.get(total);
+    }
+
+    let res = [];
+    for (let i = 0; i < coins.length; i++) {
+      arr.push(coins[i]);
+      console.log(arr, i);
+
+      const total = arr.reduce((acc, curr) => acc + curr, 0);
+      res = dp(total);
+      // arr = res;
+      // console.log(res);
+      if (!map.has(total)) map.set(total, Array.from(arr));
+      if (map.has(total) && map.get(total).length > arr.length) {
+        map.set(total, Array.from(arr));
+      }
+      arr.pop();
+    }
+    return arr;
+  }
+  dp(0);
+  console.log(map);
+  return min === Infinity ? -1 : min;
 }
-console.log(uniquePaths(3, 7));
+console.log(coinChange([1, 3, 4, 5], 7));
+// [186, 419, 83, 408], 6249
