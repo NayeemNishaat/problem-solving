@@ -12,31 +12,22 @@ function coinChange(coins: number[], amount: number): number {
 
       if (map.has(total) && map.get(total).length > arr.length) {
         map.set(total, Array.from(arr));
-        // console.log("arr", arr);
-        return arr;
       }
+      return arr;
     }
 
     if (map.has(total)) {
-      // console.log(map.get(total), arr);
       if (map.get(total).length > arr.length) {
-        // console.log(arr);
         map.set(total, Array.from(arr));
-
-        if (total !== 4) return arr;
-      }
-      // return map.get(total);
+      } else return arr;
     }
 
     let res = [];
     for (let i = 0; i < coins.length; i++) {
       arr.push(coins[i]);
-      console.log(arr, i);
 
       const total = arr.reduce((acc, curr) => acc + curr, 0);
       res = dp(total);
-      // arr = res;
-      // console.log(res);
       if (!map.has(total)) map.set(total, Array.from(arr));
       if (map.has(total) && map.get(total).length > arr.length) {
         map.set(total, Array.from(arr));
@@ -46,8 +37,7 @@ function coinChange(coins: number[], amount: number): number {
     return arr;
   }
   dp(0);
-  console.log(map);
   return min === Infinity ? -1 : min;
 }
-console.log(coinChange([1, 3, 4, 5], 7));
+console.log(coinChange([186, 419, 83, 408], 6249));
 // [186, 419, 83, 408], 6249
