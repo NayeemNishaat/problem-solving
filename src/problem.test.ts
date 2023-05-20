@@ -7,18 +7,18 @@ function coinChange(coins: number[], amount: number): number {
     if (amount < 0) return Infinity;
     if (map.has(amount)) return map.get(amount);
 
-    let res = Infinity;
+    let min = Infinity;
     for (let i = 0; i < coins.length; i++) {
       const numCoins = dp(amount - coins[i]);
       if (numCoins === Infinity) continue;
-      res = Math.min(res, numCoins + 1);
+      min = Math.min(min, numCoins + 1);
     }
-    map.set(amount, res);
-    return res;
+    map.set(amount, min);
+    return min;
   }
   return dp(amount);
 }
-console.log(coinChange([186, 419, 83, 408], 6249));
+console.log(coinChange([1, 3, 4, 5], 7));
 // [186, 419, 83, 408], 6249    20
 // [3,7,405,436], 8839     25
 // [1, 3, 4, 5], 7
