@@ -1,15 +1,20 @@
-function coinChange(coins: number[], amount: number) {
-  const dp = Array.from({ length: amount + 1 }, () => Infinity);
-  dp[0] = 0;
+function lengthOfLIS(nums: number[]): number {
+  let max = 1;
 
-  for (let i = 1; i < amount + 1; i++) {
-    for (let j = 0; j <= coins.length; j++)
-      if (i - coins[j] >= 0) dp[i] = Math.min(dp[i], 1 + dp[i - coins[j]]);
+  function dp(nums: number[]) {
+    for (let i = 0; i < nums.length - 1; i++) {
+      if (nums[i] >= nums[i + 1]) break;
+      else if (nums[i] < nums[i + 1] && i === nums.length - 2) {
+        max = Math.max(max, nums.length);
+        return;
+      }
+    }
+
+    for (let i = 0; i < nums.length; i++) {
+      dp([...nums.slice(0, i), ...nums.slice(i + 1)]);
+    }
   }
-  return dp[amount] === Infinity ? -1 : dp[amount];
+  dp(nums);
+  return max;
 }
-console.log(coinChange([1, 3, 4, 5], 7));
-// [186, 419, 83, 408], 6249    20
-// [3,7,405,436], 8839     25
-// [1, 3, 4, 5], 7
-// [2,5,10,1], 27 4
+console.log(lengthOfLIS([7, 7, 7, 7, 7, 7, 7]));
