@@ -1,23 +1,17 @@
 function lengthOfLIS(nums: number[]): number {
   let max = 1;
-  const map = new Map();
+  const map = new Map(),
+    stack = [];
 
-  function dp(curr: number[], i: number) {
-    // if (map.has(i)) return map.get(i);
-    // console.log(curr, i);
+  function dp(i: number) {
     for (i; i < nums.length; i++) {
-      if (curr[curr.length - 1] > nums[i]) continue;
-      curr.push(nums[i]);
-      const currentMax = dp(curr, i + 1);
-
-      max = Math.max(max, currentMax);
-      curr.pop();
+      if (stack[stack.length - 1] > nums[i]) continue;
+      stack.push(nums[i]);
+      dp(i + 1);
+      stack.pop();
     }
-    // map.set(i, max);
-    return curr.length;
   }
-  dp([], 0);
-  // console.log(map);
+  dp(0);
   return max;
 }
 
@@ -236,5 +230,5 @@ const arr = [
   -2488, -2489, -2490, -2491, -2492, -2493, -2494, -2495, -2496, -2497, -2498,
   -2499, -2500
 ];
-console.log(lengthOfLIS([10, 9, 2, 5, 3, 7, 101, 18]));
+console.log(lengthOfLIS([1, 2, 4, 3]));
 // [10, 9, 2, 5, 3, 7, 101, 18]
