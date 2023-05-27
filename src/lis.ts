@@ -1,4 +1,4 @@
-function lengthOfLIS(nums: number[]): number {
+export function lengthOfLIS(nums: number[]): number {
   const map = new Map(),
     stack = [];
 
