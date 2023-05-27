@@ -21,18 +21,15 @@
 } */
 
 // Chapter: Bottom Up
-export function lengthOfLIS(nums: number[]): number {
+function lengthOfLIS(nums: number[]): number {
   const dp = Array.from({ length: nums.length }, () => 1);
 
   for (let i = nums.length - 2; i >= 0; i--) {
-    let max = 0;
     for (let j = i + 1; j < nums.length; j++) {
-      if (nums[j] <= nums[i]) continue;
-      max = Math.max(max, 1 + dp[j]);
+      if (nums[j] > nums[i]) dp[i] = Math.max(dp[i], 1 + dp[j]);
     }
-    dp[i] = max;
   }
-  return dp[0];
+  return Math.max(...dp);
 }
 console.log(lengthOfLIS([0, 1, 0, 3, 2, 3]));
 // [10, 9, 2, 5, 3, 7, 101, 18]

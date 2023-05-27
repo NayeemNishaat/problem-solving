@@ -1,4 +1,4 @@
-function lengthOfLIS(nums: number[]): number {
+export function lengthOfLIS(nums: number[]): number {
   const dp = Array.from({ length: nums.length }, () => 1);
 
   for (let i = nums.length - 2; i >= 0; i--) {
