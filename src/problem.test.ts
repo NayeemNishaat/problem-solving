@@ -1,21 +1,23 @@
 function lengthOfLIS(nums: number[]): number {
-  const map = new Map(),
-    stack = [];
+  const stack = [],
+    map = new Map();
 
   function dp(idx: number) {
     if (map.has(idx)) return map.get(idx);
 
     let max = 0;
     for (let i = idx + 1; i < nums.length; i++) {
-      if (stack[stack.length - 1] >= nums[i]) continue;
+      if (stack.at(-1) >= nums[i]) continue;
 
       stack.push(nums[i]);
       max = Math.max(max, dp(i) + 1);
       stack.pop();
     }
+
     map.set(idx, max);
     return max;
   }
+
   return dp(-1);
 }
 
