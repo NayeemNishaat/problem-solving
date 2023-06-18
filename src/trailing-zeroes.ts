@@ -1,4 +1,4 @@
-function trailingZeroes(n: number): number {
+export function trailingZeroes(n: number): number {
   return (
     Math.floor(n / 3125) +
     Math.floor(n / 625) +

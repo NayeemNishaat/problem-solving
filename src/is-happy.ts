@@ -1,4 +1,4 @@
-function isHappy(n: number): boolean {
+export function isHappy(n: number): boolean {
   while (n > 9) {
     n = n
       .toString()
