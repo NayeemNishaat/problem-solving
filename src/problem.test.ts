@@ -1,23 +1,12 @@
-class RandomizedSet {
-  map = new Map();
+function isHappy(n: number): boolean {
+  while (n > 9) {
+    n = n
+      .toString()
+      .split("")
+      .reduce((acc, el) => acc + +el * +el, 0);
 
-  constructor() {}
-
-  insert(val: number): boolean {
-    if (this.map.get(val) === val) return false;
-    this.map.set(val, val);
-    return true;
+    if (n === 1 || n === 7) return true;
   }
-
-  remove(val: number): boolean {
-    if (this.map.has(val)) {
-      this.map.delete(val);
-      return true;
-    } else return false;
-  }
-
-  getRandom(): number {
-    const values: number[] = [...this.map.values()];
-    return values[~~(Math.random() * values.length)];
-  }
+  return n === 1 || n === 7;
 }
+console.log(isHappy(13));
