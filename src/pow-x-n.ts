@@ -1,4 +1,4 @@
-function myPow(x: number, n: number): number {
+export function myPow(x: number, n: number): number {
   return n >= 0 ? qmi(x, n) : 1 / qmi(x, -n);
 }
 
