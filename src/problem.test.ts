@@ -1,17 +1,38 @@
-function mySqrt(x: number): number {
-  let right = x,
-    left = 0;
+function divide(dividend: number, divisor: number): number {
+  let count = 0,
+    sign = 1;
 
-  while (right >= left) {
-    const mid = ~~((left + right) / 2);
-    const square = mid * mid;
+  const negativeDividend = dividend < 0;
+  const negativeDivisor = divisor < 0;
 
-    if (square === x) return mid;
+  if (
+    (negativeDividend || negativeDivisor) &&
+    !(negativeDividend && negativeDivisor)
+  )
+    sign = -1;
 
-    if (square > x) right = mid - 1;
-    else left = mid + 1;
+  dividend = Math.abs(dividend);
+  divisor = Math.abs(divisor);
+
+  while (divisor <= dividend) {
+    let powerOfTwo = 1;
+    let currValue = divisor;
+
+    while (currValue + currValue <= dividend) {
+      currValue += currValue;
+      powerOfTwo += powerOfTwo;
+    }
+
+    count += powerOfTwo;
+
+    dividend -= currValue;
   }
 
-  return right;
+  let total = count * sign;
+
+  total = total > 2 ** 31 - 1 ? 2 ** 31 - 1 : total;
+  total = total < -(2 ** 31) ? -(2 ** 31) : total;
+
+  return total;
 }
-mySqrt(10);
+console.log(divide(-2147483648, -1));
