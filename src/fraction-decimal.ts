@@ -1,4 +1,7 @@
-const fractionToDecimal = function (numerator: number, denominator: number) {
+export const fractionToDecimal = function (
+  numerator: number,
+  denominator: number
+) {
   if (numerator === 0) {
     return "0";
   }
