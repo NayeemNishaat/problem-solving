@@ -1,38 +1,39 @@
-function divide(dividend: number, divisor: number): number {
-  let count = 0,
-    sign = 1;
-
-  const negativeDividend = dividend < 0;
-  const negativeDivisor = divisor < 0;
-
-  if (
-    (negativeDividend || negativeDivisor) &&
-    !(negativeDividend && negativeDivisor)
-  )
-    sign = -1;
-
-  dividend = Math.abs(dividend);
-  divisor = Math.abs(divisor);
-
-  while (divisor <= dividend) {
-    let powerOfTwo = 1;
-    let currValue = divisor;
-
-    while (currValue + currValue <= dividend) {
-      currValue += currValue;
-      powerOfTwo += powerOfTwo;
-    }
-
-    count += powerOfTwo;
-
-    dividend -= currValue;
+const fractionToDecimal = function (numerator: number, denominator: number) {
+  if (numerator === 0) {
+    return "0";
   }
 
-  let total = count * sign;
+  let result = "";
 
-  total = total > 2 ** 31 - 1 ? 2 ** 31 - 1 : total;
-  total = total < -(2 ** 31) ? -(2 ** 31) : total;
+  if (Math.sign(numerator) !== Math.sign(denominator)) result += "-";
 
-  return total;
-}
-console.log(divide(-2147483648, -1));
+  const numer = Math.abs(numerator);
+  const denom = Math.abs(denominator);
+
+  result += Math.floor(numer / denom);
+
+  let remainder = numer % denom;
+  if (remainder === 0) return result;
+
+  result += ".";
+
+  const map = new Map();
+
+  while (remainder !== 0) {
+    if (map.has(remainder)) {
+      const index = map.get(remainder);
+      result = result.slice(0, index) + "(" + result.slice(index) + ")";
+      break;
+    }
+
+    map.set(remainder, result.length);
+    console.log(remainder, result, result.length);
+
+    remainder *= 10;
+    result += Math.floor(remainder / denom);
+    remainder %= denom;
+  }
+
+  return result;
+};
+console.log(fractionToDecimal(29, 7));
