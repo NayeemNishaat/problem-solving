@@ -1,38 +1,63 @@
-const fractionToDecimal = function (numerator: number, denominator: number) {
-  if (numerator === 0) {
-    return "0";
-  }
+function sum(a: number, b: number) {
+  const aBin = a.toString(2).split("");
+  const bBin = b.toString(2).split("");
+  console.log(bBin);
+  let carry = 0;
+  const res = [];
+  while (aBin.length || bBin.length) {
+    const lastA = +aBin.pop();
+    const lastB = +bBin.pop();
 
-  let result = "";
-
-  if (Math.sign(numerator) !== Math.sign(denominator)) result += "-";
-
-  const numer = Math.abs(numerator);
-  const denom = Math.abs(denominator);
-
-  result += Math.floor(numer / denom);
-
-  let remainder = numer % denom;
-  if (remainder === 0) return result;
-
-  result += ".";
-
-  const map = new Map();
-
-  while (remainder !== 0) {
-    if (map.has(remainder)) {
-      const index = map.get(remainder);
-      result = result.slice(0, index) + "(" + result.slice(index) + ")";
-      break;
+    if (!lastA) {
+      if (carry === 0) res.push(lastB);
+      else {
+        if (lastB === 0) res.push(1);
+        else {
+          res.push(0);
+        }
+        carry = 0;
+      }
+      continue;
     }
 
-    map.set(remainder, result.length);
+    if (!lastB) {
+      if (carry === 0) res.push(lastA);
+      else {
+        if (lastA === 0) res.push(1);
+        else {
+          res.push(0);
+        }
+        carry = 0;
+      }
+      continue;
+    }
 
-    remainder *= 10;
-    result += Math.floor(remainder / denom);
-    remainder %= denom;
+    if (lastA === 1 && lastB === 1) {
+      if (carry === 0) res.push(0);
+      else res.push(1);
+
+      carry = 1;
+      continue;
+    }
+
+    if (lastA === 1 || lastB === 1) {
+      if (carry === 0) res.push(1);
+      else {
+        carry = 1;
+        res.push(0);
+      }
+
+      continue;
+    }
+
+    if (carry === 1) {
+      res.push(1);
+      carry = 0;
+    } else res.push(0);
   }
-
-  return result;
-};
-console.log(fractionToDecimal(29, 7));
+  // console.log(res);
+  res.push(carry);
+  res.reverse();
+  return Number("0b" + res.join(""));
+}
+console.log(sum(200, 10));
