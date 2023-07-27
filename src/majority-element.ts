@@ -1,4 +1,4 @@
-function majorityElement(nums: number[]): number {
+export function majorityElement(nums: number[]): number {
   const map = new Map();
 
   nums.forEach((n) => {
