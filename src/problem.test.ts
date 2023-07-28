@@ -30,7 +30,8 @@ function leastInterval(tasks: string[], n: number): number {
       lookupMap.set(options[i], res.length + n);
       map.set(options[i], map.get(options[i]) - 1);
       i++;
-      if (i === options.length) i = 0; // || lookupMap.get(options[0]) <= res.length
+      if (i === options.length || lookupMap.get(options[0]) <= res.length)
+        i = 0;
     } else if (map.get(options[i]) === 0) {
       map.delete(options[i]);
       options.splice(i, 1);
@@ -43,7 +44,8 @@ function leastInterval(tasks: string[], n: number): number {
 
   return res.length;
 }
+
 console.log(
-  // leastInterval(["A", "A", "A", "A", "A", "A", "B", "C", "D", "E", "F", "G"], 2)
-  leastInterval(["A", "A", "A", "B", "B", "B", "C", "C", "C", "D", "E", "E"], 2)
+  // leastInterval(["A", "A", "A", "A", "A", "A", "B", "C", "D", "E", "F", "G"], 2) // 16
+  leastInterval(["A", "A", "A", "B", "B", "B", "C", "C", "C", "D", "E", "E"], 2) // 12
 );
