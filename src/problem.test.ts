@@ -41,7 +41,6 @@ function leastInterval(tasks: string[], n: number): number {
     }
   }
 
-  console.log(res);
   return res.length;
 }
 console.log(
