@@ -1,4 +1,4 @@
-function leastInterval(tasks: string[], n: number): number {
+export function leastInterval(tasks: string[], n: number): number {
   if (n === 0) return tasks.length;
 
   tasks.sort((a, b) => {
@@ -67,3 +67,31 @@ console.log(
     36
   )
 );
+
+// [
+//   [1, 4],
+//   [5, 3],
+//   [10, 1]
+// ].sort((a, b) => {
+//   if (a[1] > b[1]) return 1;
+//   if (a[1] < b[1]) return -1;
+//   return 0;
+// });
+
+// ["A", "E", "B"].sort((a, b) => -1 * a.localeCompare(b));
+// ["A", "E", "B"].sort((a, b) => b.localeCompare(a));
+// users.sort((a, b) => a.firstname.replace(/\D/g, '').localeCompare(b.firstname.replace(/\D/g, '')));
+
+// const collator = new Intl.Collator("en-US");
+// function sortAsc(a, b) {
+//   if (typeof a === "string" && typeof b === "string") {
+//     return collator.compare(b, a);
+//   }
+//   return b - a;
+// }
+
+// tasks.sort((a, b) => {
+//   if (a < b) return -1;
+//   if (a > b) return 1;
+//   return 0;
+// });
