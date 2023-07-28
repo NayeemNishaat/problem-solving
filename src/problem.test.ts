@@ -1,6 +1,8 @@
 function leastInterval(tasks: string[], n: number): number {
   if (n === 0) return tasks.length;
 
+  tasks.sort((a, b) => a.localeCompare(b));
+
   const map = new Map();
   const lookupMap = new Map();
 
@@ -39,5 +41,5 @@ function leastInterval(tasks: string[], n: number): number {
   return res.length;
 }
 console.log(
-  leastInterval(["A", "A", "A", "A", "A", "A", "B", "C", "D", "E", "F", "G"], 2)
+  leastInterval(["B", "A", "A", "A", "C", "D", "E", "F", "G", "A", "A", "A"], 2)
 );
