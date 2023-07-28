@@ -16,22 +16,22 @@ function leastInterval(tasks: string[], n: number): number {
   while (map.size && res.length < 100) {
     console.log(map, res, i, lookupMap);
     if (
-      map.get(options[i]) !== 0 &&
+      map.get(options[i]) &&
       (!lookupMap.has(options[i]) || lookupMap.get(options[i]) <= res.length)
     ) {
       res.push(options[i]);
       lookupMap.set(options[i], res.length + n);
       map.set(options[i], map.get(options[i]) - 1);
       i++;
-      if (i === options.length) i = 0;
+      if (i === options.length || lookupMap.get(options[0]) <= res.length)
+        i = 0;
     } else if (map.get(options[i]) === 0) {
       map.delete(options[i]);
-      i++;
+      options.splice(i, 1);
+
       if (i === options.length) i = 0;
     } else {
       res.push("");
-      // i++;
-      // if (i === options.length) i = 0;
     }
   }
 
