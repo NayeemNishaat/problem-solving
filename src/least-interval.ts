@@ -89,3 +89,11 @@ console.log(
   // leastInterval(["A", "A", "A", "A", "A", "A", "B", "C", "D", "E", "F", "G"], 2) // 16
   leastInterval(["A", "A", "A", "B", "B", "B", "C", "C", "C", "D", "E", "E"], 2) // 12
 );
+
+// function generic<T>(vals: T[]): T {
+//   return vals[0];
+// }
+// const gen = generic<void>([]);
+
+// type NonEmptyArray<T> = [T, ...T[]];
+// const a: NonEmptyArray<number> = [1, 2];
