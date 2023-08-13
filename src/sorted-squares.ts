@@ -2,15 +2,16 @@ export function sortedSquares(nums: number[]): number[] {
   let left = 0,
     right = nums.length - 1,
     p = right;
+  const res = [];
 
   while (left <= right) {
-    if (nums[left] ** 2 > nums[right] ** 2) {
-      [nums[left], nums[right]] = [nums[right], nums[left]];
-      nums[p] = nums[right--] ** 2;
-    } else nums[p] = nums[right--] ** 2;
+    res[p] =
+      nums[left] ** 2 > nums[right] ** 2
+        ? nums[left++] ** 2
+        : nums[right--] ** 2;
     p--;
   }
 
-  return nums;
+  return res;
 }
-console.log(sortedSquares([-4, -1, 0, 3, 10]));
+console.log(sortedSquares([-5, -3, -2, -1]));
