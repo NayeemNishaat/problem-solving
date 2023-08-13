@@ -1,4 +1,4 @@
-function sortedSquares(nums: number[]): number[] {
+export function sortedSquares(nums: number[]): number[] {
   let left = 0,
     right = nums.length - 1,
     p = right;
