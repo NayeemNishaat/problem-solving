@@ -1,17 +1,13 @@
-function sortedSquares(nums: number[]): number[] {
-  let left = 0,
-    right = nums.length - 1,
-    p = right;
+function duplicateZeros(arr: number[]): void {
   const res = [];
 
-  while (left <= right) {
-    res[p] =
-      nums[left] ** 2 > nums[right] ** 2
-        ? nums[left++] ** 2
-        : nums[right--] ** 2;
-    p--;
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === 0) res.push(0, 0);
+    else res.push(arr[i]);
   }
 
-  return res;
+  for (let i = 0; i < arr.length; i++) arr[i] = res[i];
+
+  console.log(arr);
 }
-console.log(sortedSquares([-5, -3, -2, -1]));
+console.log(duplicateZeros([1, 0, 2, 3, 0, 4, 5, 0]));
