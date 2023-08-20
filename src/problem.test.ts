@@ -40,4 +40,4 @@ function baseN(num: number) {
   }
   return str;
 }
-console.log(baseN(703));
+console.log(baseN(6432283));
