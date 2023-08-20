@@ -1,6 +1,43 @@
-function duplicateZeros(arr: number[]): void {
-  const len = arr.length;
-  for (let i = 0; i < len; i++) if (arr[i] === 0) arr.splice(i, 0, 0), i++;
-  arr.splice(len);
+const charMap = [
+  "Z",
+  "A",
+  "B",
+  "C",
+  "D",
+  "E",
+  "F",
+  "G",
+  "H",
+  "I",
+  "J",
+  "K",
+  "L",
+  "M",
+  "N",
+  "O",
+  "P",
+  "Q",
+  "R",
+  "S",
+  "T",
+  "U",
+  "V",
+  "W",
+  "X",
+  "Y"
+];
+
+const base = 26;
+function baseN(num: number) {
+  let str = "",
+    r = 0;
+
+  while (num) {
+    (r = num % base), num--;
+    num = Math.trunc(num / base);
+
+    str = charMap[r] + str;
+  }
+  return str;
 }
-console.log(duplicateZeros([1, 0, 2, 3, 0, 4, 5, 0]));
+console.log(baseN(703));
