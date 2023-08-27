@@ -1,43 +1,20 @@
-const charMap = [
-  "Z",
-  "A",
-  "B",
-  "C",
-  "D",
-  "E",
-  "F",
-  "G",
-  "H",
-  "I",
-  "J",
-  "K",
-  "L",
-  "M",
-  "N",
-  "O",
-  "P",
-  "Q",
-  "R",
-  "S",
-  "T",
-  "U",
-  "V",
-  "W",
-  "X",
-  "Y"
-];
+function removeElement(nums: number[], val: number): number {
+  let j = nums.length - 1,
+    c = 0;
+  for (let i = 0; i < nums.length && i <= j; i++) {
+    if (nums[i] === val) {
+      while (nums[j] === val) {
+        j--;
+        c++;
+      }
 
-const base = 26;
-function baseN(num: number) {
-  let str = "",
-    r = 0;
-
-  while (num) {
-    (r = num % base), num--;
-    num = Math.trunc(num / base);
-
-    str = charMap[r] + str;
+      if (i > j) break;
+      [nums[i], nums[j]] = [nums[j], nums[i]];
+      j--;
+      c++;
+    }
   }
-  return str;
+  console.log(c);
+  return nums.length - c;
 }
-console.log(baseN(6432283));
+console.log(removeElement([1], 1));
