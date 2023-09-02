@@ -1,11 +1,15 @@
-function removeElement(nums: number[], val: number): number {
-  let j = 0;
-  for (let i = 0; i < nums.length; i++) {
-    if (nums[i] !== val) {
-      nums[j] = nums[i];
-      j++;
-    }
+function strip(html: string) {
+  let tag = false,
+    output = "",
+    quote = 0;
+
+  for (let i = 0; i < html.length; i++) {
+    if (html[i] === "<") tag = true;
+    else if (html[i] === ">") tag = false;
+    else if (html[i] === "'" && quote === 0) quote = 1;
+    else if (html[i] === "'" && quote === 1) quote = 0;
+    else if (!tag && quote === 0) output += html[i];
   }
-  return j;
+  return output;
 }
-console.log(removeElement([1, 2, 2], 1));
+console.log(strip("<a href='>Nayeem'>Mohim</a>"));
