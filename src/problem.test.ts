@@ -12,4 +12,4 @@ function strip(html: string) {
   }
   return output;
 }
-console.log(strip("<a href='>Nayeem'>Mohim</a>"));
+console.log(strip("<a href='>Nayeem'>Saymon</a>"));

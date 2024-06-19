@@ -1,2 +1,2 @@
-import { letterCombinations } from "./letter-comb-phone";
-letterCombinations;
+import { main } from "./exp";
+main();
