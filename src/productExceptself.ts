@@ -21,18 +21,18 @@
 console.log(productExceptSelf([-1, 1, 0, -3, 3])); */
 
 function productExceptSelf(nums: number[]): number[] {
-  const res = new Array(nums.length).fill(1);
+  const res = [];
 
-  let left = 1;
+  let leftPrefixProd = 1;
   for (let i = 0; i < nums.length; i++) {
-    res[i] = left;
-    left *= nums[i];
+    res[i] = leftPrefixProd;
+    leftPrefixProd *= nums[i];
   }
 
-  let right = 1;
+  let rightPostfixProd = 1;
   for (let i = nums.length - 1; i >= 0; i--) {
-    res[i] *= right;
-    right *= nums[i];
+    res[i] *= rightPostfixProd;
+    rightPostfixProd *= nums[i];
   }
 
   return res;
