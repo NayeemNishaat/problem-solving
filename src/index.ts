@@ -1,2 +1,2 @@
 import { main } from "./exp";
-main();
+console.log(main());
