@@ -12,8 +12,8 @@ function maxSubArray(nums: number[]): number {
     // for (let j = i; j < nums.length; j++) {
     //   // for (let k = i; k <= j; k++) {
     //   s += nums[j];
-    //   // }
     //   max = Math.max(max, s);
+    //   // }
     // }
   }
   return max;
