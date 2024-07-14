@@ -1,23 +1,24 @@
 export function main() {
-  function maxProduct(nums: number[]): number {
-    let max = -Infinity,
-      localMin = 1,
-      localMax = 1;
+  function findMin(nums: number[]): number {
+    let left = 0,
+      right = nums.length - 1,
+      mid,
+      min = Infinity;
 
-    for (let i = 0; i < nums.length; i++) {
-      localMin *= nums[i];
-      localMax *= nums[i];
+    while (left <= right) {
+      mid = Math.ceil((left + right) / 2);
 
-      const tmp = localMax;
-      localMax = Math.max(localMin, localMax);
-      localMin = Math.min(localMin, tmp);
-      if (localMin > nums[i]) localMin = nums[i];
-      if (localMax < nums[i]) localMax = nums[i];
+      min = Math.min(min, nums[mid], nums[left]);
 
-      max = Math.max(max, localMax);
+      if (nums[mid] >= nums[left]) {
+        left = mid + 1;
+      } else {
+        right = mid - 1;
+      }
     }
-    return max;
+
+    return min;
   }
 
-  return maxProduct([0, 1, 2, 0, 0, 4, -2, -3]);
+  return findMin([7, 8, 1, 2, -3, 4, 5, 6]);
 }
