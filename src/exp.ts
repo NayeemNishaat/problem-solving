@@ -2,7 +2,7 @@ export function main() {
   function findMin(nums: number[]): number {
     let left = 0,
       right = nums.length - 1,
-      mid,
+      mid: number,
       min = Infinity;
 
     while (left <= right) {
