@@ -21,3 +21,13 @@ function search(nums: number[], target: number): number {
 
   return -1;
 }
+
+// const a = 1;
+
+// if (a !== 4 || a !== 3) {
+//   return "INVALID";
+// }
+
+// // if (a === 2 && a === 3) {
+// //   return "INVALID";
+// // }
