@@ -28,6 +28,6 @@ function search(nums: number[], target: number): number {
 //   return "INVALID";
 // }
 
-// // if (a === 2 && a === 3) {
-// //   return "INVALID";
-// // }
+// if (a === 2 && a === 3) {
+//   return "INVALID";
+// }
