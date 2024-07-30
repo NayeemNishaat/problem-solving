@@ -1,18 +1,31 @@
 export function main() {
-  function twoSum(numbers: number[], target: number): number[] {
-    let left = 0,
-      right = numbers.length - 1,
-      sum: number;
+  function threeSum(nums: number[]): number[][] {
+    nums.sort((a, b) => a - b);
+    const res = [];
 
-    while (left < right) {
-      sum = numbers[left] + numbers[right];
+    for (let i = 0; i < nums.length; i++) {
+      if (nums[i] === nums[i - 1]) continue; // Important:  Must be i - 1 because this doesn't decrease the combination space. If we use i + 1 then i increase and combination space decreased
 
-      if (sum === target) return [++left, ++right];
+      let left = i + 1,
+        right = nums.length - 1,
+        sum: number;
 
-      if (sum > target) right--;
-      else left++;
+      while (left < right) {
+        sum = nums[i] + nums[left] + nums[right];
+
+        if (sum === 0) {
+          res.push([nums[i], nums[left], nums[right]]);
+          left++, right--;
+
+          while (nums[left] === nums[left - 1]) left++;
+          while (nums[right] === nums[right + 1]) right--;
+        } else if (sum > 0) right--;
+        else left++;
+      }
     }
+
+    return res;
   }
 
-  return twoSum([1, 2, 3, 4, 7, 11, 15], 9);
+  return threeSum([-1, 0, 1, 2, -1, -4]);
 }
