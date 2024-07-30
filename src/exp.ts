@@ -1,27 +1,18 @@
 export function main() {
-  function search(nums: number[], target: number): number {
+  function twoSum(numbers: number[], target: number): number[] {
     let left = 0,
-      right = nums.length - 1,
-      mid: number;
+      right = numbers.length - 1,
+      sum: number;
 
-    while (left <= right) {
-      mid = Math.floor((left + right) / 2);
+    while (left < right) {
+      sum = numbers[left] + numbers[right];
 
-      if (nums[mid] === target) return mid;
+      if (sum === target) return [++left, ++right];
 
-      if (nums[left] <= nums[mid]) {
-        if (target > nums[mid] || target < nums[left]) {
-          left = mid + 1;
-        } else right = mid - 1;
-      } else {
-        if (target < nums[mid] || target > nums[right]) {
-          right = mid - 1;
-        } else left = mid + 1;
-      }
+      if (sum > target) right--;
+      else left++;
     }
-
-    return -1;
   }
 
-  return search([4, 5, 6, 7, 0, 1, 2], 2);
+  return twoSum([1, 2, 3, 4, 7, 11, 15], 9);
 }
