@@ -4,7 +4,9 @@
     "moduleResolution": "Node",
     "outDir": "dist",
     "rootDir": "src",
-    "target": "ESNext"
+    "target": "ESNext",
+    "noEmit": true,
+    "allowImportingTsExtensions": true
   },
   "exclude": ["dist", "node_modules"]
 }
