@@ -4,9 +4,9 @@
   "description": "A template for using ESNEXT features with typescript.",
   "type": "module",
   "scripts": {
-    "dev": "nodemon -q -x node --no-warnings --experimental-strip-types src/index.ts",
+    "dev": "node --watch --no-warnings --experimental-strip-types src/index.ts",
     "start": "node dist/index.js",
-    "test": "nodemon -q -x NODE_ENV=development node --no-warnings --experimental-strip-types src/problem.test.ts"
+    "test": "node --watch --no-warnings --experimental-strip-types src/problem.test.ts"
   },
   "devDependencies": {
     "@types/node": "13.9.0",
